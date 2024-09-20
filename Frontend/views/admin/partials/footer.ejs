@@ -1,0 +1,23 @@
+<style>
+    /* Ensure the footer is positioned at the bottom and responsive */
+    .sticky-footer-custom {
+        position: absolute;
+        bottom: 0;
+        width: calc(100% - 250px); /* Adjust according to the sidebar width */
+    }
+
+    /* Media query for smaller screens to adjust the footer width */
+    @media (max-width: 768px) {
+        .sticky-footer-custom {
+            width: 100%; /* Take full width on smaller screens */
+        }
+    }
+</style>
+
+<footer class="sticky-footer sticky-footer-custom bg-white">
+    <div class="container my-auto">
+        <div class="copyright text-center my-auto">
+            <span>Copyright &copy; Your Website 2024</span>
+        </div>
+    </div>
+</footer>
