@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <title>Custom Swiper Demo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" />
+  <!-- Link Swiper's CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
+  <!-- Demo styles -->
+  <style>
+    html,
+    body {
+      position: relative;
+      height: 100%;
+    }
+
+    body {
+      /* background: #eee; */
+      font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+      font-size: 14px;
+      color: #000;
+      margin: 0;
+      padding: 0;
+    }
+
+    .custom-swiper {
+      width: 100%;
+      height: 100%;
+    }
+
+    .custom-swiper-slide {
+      text-align: center;
+      font-size: 18px;
+      background: #fff;
+      background: none;
+      border: 2px solid #CA9650;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width:  324px !important;
+      height:  100% !important;
+    }
+
+    .custom-swiper-slide img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .custom-swiper {
+      width: 100%;
+      height: 300px;
+      margin: 20px auto;
+    }
+
+    /* Change arrow color */
+    .custom-swiper-button-next,
+    .custom-swiper-button-prev {
+      color: #CA9650 !important;
+    }
+
+    /* View More button style */
+    .view-more {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 10px 20px;
+      background-color: #CA9650;
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+      font-size: 14px;
+    }
+
+    .view-more:hover {
+      background-color: #a07a43;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Swiper -->
+  <div #swiperRef="" class="swiper custom-swiper  ">
+    <div class="swiper-wrapper px-8 ">
+
+      <!-- first card  -->
+      <div class="swiper-slide custom-swiper-slide">
+
+        <div class="flex flex-col items-center h-full w-full">
+          <div class="px-2 py-4 flex item-center h-[200px] w-[220px] ">
+              <img class=" h-full w-full object-cover hover:scale-110 " src="../../img/Sancks.png" alt="snaks">
+          </div>
+          <div>
+              <!-- Product Info -->
+              <div class="product-info text-center">
+                <h2 class="woocommerce-loop-product__title text-lg font-semibold text-gray-800 mb-2">
+                  Cream Onion Chips (20g)
+                </h2>
+                <span class="price block text-gray-700">
+                  <span class="mrp-price font-medium">
+                    MRP: <span class="woocommerce-Price-amount amount text-green-600">
+                    <bdi><span class="woocommerce-Price-currencySymbol">₹</span>5.00</bdi>
+                    </span>
+                  </span>
+                </span>
+                <p class="inclusive-taxes text-xs text-gray-500">(Inclusive of All Taxes)</p>
+              </div>
+          </div>
+      </div>
+      </div>
+
+      <div class="swiper-slide custom-swiper-slide">
+
+        <div class="flex flex-col items-center h-full w-full">
+          <div class="px-2 py-4 flex item-center h-[200px] w-[220px] ">
+              <img class=" h-full w-full object-cover hover:scale-110 " src="../../img/Sancks.png" alt="snaks">
+          </div>
+          <div>
+              <!-- Product Info -->
+              <div class="product-info text-center">
+                <h2 class="woocommerce-loop-product__title text-lg font-semibold text-gray-800 mb-2">
+                  Cream Onion Chips (20g)
+                </h2>
+                <span class="price block text-gray-700">
+                  <span class="mrp-price font-medium">
+                    MRP: <span class="woocommerce-Price-amount amount text-green-600">
+                    <bdi><span class="woocommerce-Price-currencySymbol">₹</span>5.00</bdi>
+                    </span>
+                  </span>
+                </span>
+                <p class="inclusive-taxes text-xs text-gray-500">(Inclusive of All Taxes)</p>
+              </div>
+          </div>
+      </div>
+      </div>
+     
+      <div class="swiper-slide custom-swiper-slide">
+
+        <div class="flex flex-col items-center h-full w-full">
+          <div class="px-2 py-4 flex item-center h-[200px] w-[220px] ">
+              <img class=" h-full w-full object-cover hover:scale-110 " src="../../img/Sancks.png" alt="snaks">
+          </div>
+          <div>
+              <!-- Product Info -->
+              <div class="product-info text-center">
+                <h2 class="woocommerce-loop-product__title text-lg font-semibold text-gray-800 mb-2">
+                  Cream Onion Chips (20g)
+                </h2>
+                <span class="price block text-gray-700">
+                  <span class="mrp-price font-medium">
+                    MRP: <span class="woocommerce-Price-amount amount text-green-600">
+                    <bdi><span class="woocommerce-Price-currencySymbol">₹</span>5.00</bdi>
+                    </span>
+                  </span>
+                </span>
+                <p class="inclusive-taxes text-xs text-gray-500">(Inclusive of All Taxes)</p>
+              </div>
+          </div>
+      </div>
+      </div>
+     
+      <div class="swiper-slide custom-swiper-slide">
+
+        <div class="flex flex-col items-center h-full w-full">
+          <div class="px-2 py-4 flex item-center h-[200px] w-[220px] ">
+              <img class=" h-full w-full object-cover hover:scale-110 " src="../../img/Sancks.png" alt="snaks">
+          </div>
+          <div>
+              <!-- Product Info -->
+              <div class="product-info text-center">
+                <h2 class="woocommerce-loop-product__title text-lg font-semibold text-gray-800 mb-2">
+                  Cream Onion Chips (20g)
+                </h2>
+                <span class="price block text-gray-700">
+                  <span class="mrp-price font-medium">
+                    MRP: <span class="woocommerce-Price-amount amount text-green-600">
+                    <bdi><span class="woocommerce-Price-currencySymbol">₹</span>5.00</bdi>
+                    </span>
+                  </span>
+                </span>
+                <p class="inclusive-taxes text-xs text-gray-500">(Inclusive of All Taxes)</p>
+              </div>
+          </div>
+      </div>
+      </div>
+
+      <div class="swiper-slide custom-swiper-slide">
+
+        <div class="flex flex-col items-center h-full w-full">
+          <div class="px-2 py-4 flex item-center h-[200px] w-[220px] ">
+              <img class=" h-full w-full object-cover hover:scale-110 " src="../../img/Sancks.png" alt="snaks">
+          </div>
+          <div>
+              <!-- Product Info -->
+              <div class="product-info text-center">
+                <h2 class="woocommerce-loop-product__title text-lg font-semibold text-gray-800 mb-2">
+                  Cream Onion Chips (20g)
+                </h2>
+                <span class="price block text-gray-700">
+                  <span class="mrp-price font-medium">
+                    MRP: <span class="woocommerce-Price-amount amount text-green-600">
+                    <bdi><span class="woocommerce-Price-currencySymbol">₹</span>5.00</bdi>
+                    </span>
+                  </span>
+                </span>
+                <p class="inclusive-taxes text-xs text-gray-500">(Inclusive of All Taxes)</p>
+              </div>
+          </div>
+      </div>
+      </div>
+
+      <div class="swiper-slide custom-swiper-slide">
+
+        <div class="flex flex-col items-center h-full w-full">
+          <div class="px-2 py-4 flex item-center h-[200px] w-[220px] ">
+              <img class=" h-full w-full object-cover hover:scale-110 " src="../../img/Sancks.png" alt="snaks">
+          </div>
+          <div>
+              <!-- Product Info -->
+              <div class="product-info text-center">
+                <h2 class="woocommerce-loop-product__title text-lg font-semibold text-gray-800 mb-2">
+                  Cream Onion Chips (20g)
+                </h2>
+                <span class="price block text-gray-700">
+                  <span class="mrp-price font-medium">
+                    MRP: <span class="woocommerce-Price-amount amount text-green-600">
+                    <bdi><span class="woocommerce-Price-currencySymbol">₹</span>5.00</bdi>
+                    </span>
+                  </span>
+                </span>
+                <p class="inclusive-taxes text-xs text-gray-500">(Inclusive of All Taxes)</p>
+              </div>
+          </div>
+      </div>
+      </div>
+
+
+    </div>
+
+
+
+
+    <div class="swiper-button-next custom-swiper-button-next"></div>
+    <div class="swiper-button-prev custom-swiper-button-prev"></div>
+    <div class="swiper-pagination custom-swiper-pagination"></div>
+  </div>
+
+  <!-- View More button -->
+  <p class="pb-2" style="text-align: center;">
+    <a href="https://example.com" class="view-more">View More</a>
+  </p>
+
+  <!-- Swiper JS -->
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+  <!-- Initialize Swiper -->
+  <script>
+   var swiper = new Swiper(".custom-swiper", {
+  slidesPerView: 1, // Set to 1 for mobile
+  // centeredSlides: true,
+  spaceBetween: 30,
+  navigation: {
+    nextEl: ".custom-swiper-button-next",
+    prevEl: ".custom-swiper-button-prev",
+  },
+    
+
+
+  breakpoints: {
+    // when window width is >= 640px
+    640: {
+      slidesPerView: 2,
+      spaceBetween: 20,
+    },
+    // when window width is >= 768px
+    768: {
+      slidesPerView: 3,
+      spaceBetween: 30,
+    },
+  },
+});
+
+  </script>
+</body>
+
+</html>

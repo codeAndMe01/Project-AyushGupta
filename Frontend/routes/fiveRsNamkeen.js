@@ -18,7 +18,7 @@ const upload = multer({ storage: storage });
 
 
 router.get('/addFiveRsNamkeen',(req,res)=>{
-    res.render('admin/addFiveRsNamkeen')
+    res.render('admin/layout', {page : 'addFiveRsNamkeen'})
 })
 
 // CREATE: Add new fiveRsNamkeen
@@ -26,6 +26,9 @@ router.post('/add', upload.single('image'), async (req, res) => {
     try {
         const { name, price } = req.body;
         const image = req.file.filename;
+
+
+        // console.log("this i sname ",name)
 
         const newfiveRsNamkeen = new fiveRsNamkeen({
             name,
@@ -38,7 +41,11 @@ router.post('/add', upload.single('image'), async (req, res) => {
     } catch (error) {
         res.status(500).json({ message: 'Failed to add fiveRsNamkeen', error });
     }
-});
+
+
+
+}
+);
 
 // READ: Get all fiveRsNamkeen products
 router.get('/', async (req, res) => {
