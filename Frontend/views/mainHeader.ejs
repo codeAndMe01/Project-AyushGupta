@@ -25,10 +25,10 @@
                     <a href="#" class="hover:text-gray-600 flex items-center">
                         Our Products
                         <svg class="ml-1 w-4 h-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
                         </svg>
                     </a>
-                    <div class="absolute left-0 mt-2 w-48 bg-white border border-gray-200 shadow-md rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <div class="absolute left-0 mt-2 w-48 bg-white border border-gray-200 shadow-md rounded-lg opacity-0 transition-opacity duration-300 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto">
                         <a href="https://maheshnamkeen.com/rs-1/" class="block px-4 py-2 text-sm hover:bg-gray-100">Rs.1</a>
                         <a href="https://maheshnamkeen.com/rs-2/" class="block px-4 py-2 text-sm hover:bg-gray-100">Rs.2</a>
                         <a href="https://maheshnamkeen.com/rs-5/" class="block px-4 py-2 text-sm hover:bg-gray-100">Rs.5</a>
@@ -36,22 +36,10 @@
                         <!-- Add more product links as necessary -->
                     </div>
                 </div>
-                <a href="https://maheshnamkeen.com/network/" class="hover:text-gray-600">Distribution and inquiry form 
-                </a>
+                <a href="https://maheshnamkeen.com/network/" class="hover:text-gray-600">Distribution and inquiry form</a>
                 <a href="https://maheshnamkeen.com/research-development/" class="hover:text-gray-600">Research & Development</a>
                 <a href="https://maheshnamkeen.com/contact-us/" class="hover:text-gray-600">Contact Us</a>
             </nav>
-
-            <!-- Cart -->
-            <div class="hidden lg:flex items-center space-x-4">
-                <a href="https://maheshnamkeen.com/cart/" class="relative text-gray-800 hover:text-gray-600">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h18l-1.68 9.39A3 3 0 0116.35 15H7.65a3 3 0 01-2.97-2.61L3 3z" />
-                    </svg>
-                    <span class="absolute top-0 right-0 bg-red-500 text-white text-xs rounded-full px-1">0</span>
-                </a>
-                <div class="text-gray-800">₹0.00</div>
-            </div>
         </div>
 
         <!-- Mobile Menu -->
@@ -59,7 +47,21 @@
             <nav class="flex flex-col space-y-4 mt-4">
                 <a href="https://maheshnamkeen.com/" class="hover:text-gray-600">Home</a>
                 <a href="https://maheshnamkeen.com/about-us/" class="hover:text-gray-600">About Us</a>
-                <a href="https://maheshnamkeen.com/products/" class="hover:text-gray-600">Our Products</a>
+                <div class="relative group">
+                    <a href="#" class="hover:text-gray-600 flex items-center">
+                        Our Products
+                        <svg class="ml-1 w-4 h-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </a>
+                    <div class="absolute left-0 mt-2 w-48 bg-white border border-gray-200 shadow-md rounded-lg opacity-0 transition-opacity duration-300 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto">
+                        <a href="https://maheshnamkeen.com/rs-1/" class="block px-4 py-2 text-sm hover:bg-gray-100">Rs.1</a>
+                        <a href="https://maheshnamkeen.com/rs-2/" class="block px-4 py-2 text-sm hover:bg-gray-100">Rs.2</a>
+                        <a href="https://maheshnamkeen.com/rs-5/" class="block px-4 py-2 text-sm hover:bg-gray-100">Rs.5</a>
+                        <a href="https://maheshnamkeen.com/rs-10/" class="block px-4 py-2 text-sm hover:bg-gray-100">Rs.10</a>
+                        <!-- Add more product links as necessary -->
+                    </div>
+                </div>
                 <a href="https://maheshnamkeen.com/network/" class="hover:text-gray-600">Network</a>
                 <a href="https://maheshnamkeen.com/research-development/" class="hover:text-gray-600">Research & Development</a>
                 <a href="https://maheshnamkeen.com/contact-us/" class="hover:text-gray-600">Contact Us</a>

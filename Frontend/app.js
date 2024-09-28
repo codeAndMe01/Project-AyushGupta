@@ -1,5 +1,6 @@
 const express = require('express');
 const app = express();
+const fs = require('fs').promises;
 const path = require('path');
 
 
@@ -28,9 +29,40 @@ app.use(express.static(path.join(__dirname, 'public')));
 // Serve static files from the "public" folder
 app.use(express.static(path.join(__dirname, 'uploads')));
 
+
+// Function to read JSON files
+const readJsonFile = async (filePath) => {
+    try {
+        const data = await fs.readFile(filePath, 'utf8');
+        return JSON.parse(data);
+    } catch (err) {
+        throw new Error(`Error reading ${filePath}: ${err.message}`);
+    }
+};
+
+
+
 // Define routes
-app.get('/', (req, res) => {
-    res.render('index', { title: 'Home' });
+app.get('/', async (req, res) => {
+    try {
+        const namkeenFilePath = path.join(__dirname, 'public', 'data', 'fiveRsNamkeen.json');
+        const fiveRsPuffsPath = path.join(__dirname, 'public', 'data', 'fiveRsPuffs.json');
+
+        // Read both JSON files concurrently
+        const [namkeenData, fiveRsPuffsData] = await Promise.all([
+            readJsonFile(namkeenFilePath),
+            readJsonFile(fiveRsPuffsPath)
+        ]);
+
+        // Render the index page with the title and both JSON data sets
+        res.render('index', {
+            title: 'Home',
+            namkeenData,
+            fiveRsPuffsData
+        });
+    } catch (err) {
+        res.status(500).send(err.message);
+    }
 });
 
 app.get('/about', (req, res) => {

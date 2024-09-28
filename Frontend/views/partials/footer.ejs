@@ -83,38 +83,39 @@
     
 
 
-    //fiveRsCategory Swiper
-//     var swiper = new Swiper('.fiveRsSwiper', {
-//   slidesPerView: 'auto',  // Allows showing as many slides as fit the container
-//   spaceBetween: 10,       // Adjust the space between slides
-//   centeredSlides: false,  // Disable centering of the slides
-//   initialSlide: 0,        // Ensure the first slide is the initial one
-//   effect: 'coverflow',    // Enable the coverflow effect
-//   coverflowEffect: {
-//     rotate: 0,            // Keep images upright
-//     stretch: 0,
-//     depth: 100,
-//     modifier: 1,
-//     slideShadows: true,   // Enable shadows for the effect
-//   },
-//   pagination: {
-//     el: '.swiper-pagination',
-//     clickable: true,
-//   },
-// });
+    
+
+    var swiper = new Swiper(".custom-swiper", {
+  slidesPerView: 1, // Set to 1 for mobile
+  // centeredSlides: true,
+  spaceBetween: 30,
+  navigation: {
+    nextEl: ".custom-swiper-button-next",
+    prevEl: ".custom-swiper-button-prev",
+  },
+    
+
+
+  breakpoints: {
+    // when window width is >= 640px
+    640: {
+      slidesPerView: 2,
+      spaceBetween: 20,
+    },
+    // when window width is >= 768px
+    768: {
+      slidesPerView: 3,
+      spaceBetween: 30,
+    },
+  },
+});
 
 
 
-    var fiveRsSwiper = new Swiper(".fiveRsSwiper", {
-    //   effect: "coverflow",
-    //   grabCursor: true,
-      centeredSlides: true,
-      slidesPerView: "auto",
-     
-      pagination: {
-        el: ".swiper-pagination",
-      },
-    });
+
+
+
+    
   </script>
 
 
