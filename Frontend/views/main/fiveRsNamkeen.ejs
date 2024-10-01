@@ -1,135 +1,66 @@
-
+<head>
   <style>
-
-
     .custom-swiper {
       width: 100%;
       height: 100%;
     }
 
     .custom-swiper-slide {
-      text-align: center;
-      font-size: 18px;
-      background: #fff;
-      background: none;
-      border: 2px solid #CA9650;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      width:  324px !important;
-      height:  100% !important;
+      width: 324px !important;
+      height: 100% !important;
     }
 
     .custom-swiper-slide img {
-      display: block;
-      width: 100%;
-      height: 100%;
       object-fit: cover;
     }
 
     .custom-swiper {
-      width: 100%;
       height: 300px;
       margin: 20px auto;
-    }
-
-    /* Change arrow color */
-    .custom-swiper-button-next,
-    .custom-swiper-button-prev {
-      color: #CA9650 !important;
-    }
-
-    /* View More button style */
-    .view-more {
-      display: inline-block;
-      margin-top: 20px;
-      padding: 10px 20px;
-      background-color: #CA9650;
-      color: white;
-      text-decoration: none;
-      border-radius: 5px;
-      font-size: 14px;
-    }
-
-    .view-more:hover {
-      background-color: #a07a43;
     }
   </style>
 </head>
 
 <body>
   <!-- Swiper -->
-  <div #swiperRef="" class="swiper custom-swiper px-2 ">
-    <div class="swiper-wrapper ">
-      
-      
+  <div class="swiper custom-swiper px-2">
+    <div class="swiper-wrapper">
       <% namkeenData.forEach(function(item) { %>
         <div class="swiper-slide custom-swiper-slide">
-            <div class="flex flex-col items-center h-full w-full">
-                <div class="px-2 py-4 flex item-center h-[200px] w-[220px]">
-                    <img class="h-full w-full object-cover hover:scale-110" src="<%= item.image %>" alt="<%= item.title %>">
-                </div>
-                <div>
-                    <!-- Product Info -->
-                    <div class="product-info text-center">
-                        <h2 class="woocommerce-loop-product__title text-lg font-semibold text-gray-800 mb-2">
-                            <%= item.title %>
-                        </h2>
-                        <span class="price block text-gray-700">
-                            <span class="mrp-price font-medium">
-                                MRP: <span class="woocommerce-Price-amount amount text-green-600">
-                                    <bdi><span class="woocommerce-Price-currencySymbol">₹</span><%= item.price %></bdi>
-                                </span>
-                            </span>
-                        </span>
-                        <p class="inclusive-taxes text-xs text-gray-500">(Inclusive of All Taxes)</p>
-                    </div>
-                </div>
+          <div class="border-2 border-[#CA9650] rounded-lg flex flex-col items-center h-full w-full">
+            <div class="px-2 py-4 flex items-center h-[200px] w-[220px]">
+              <img class="h-full w-full object-cover transition-transform duration-300 hover:scale-110" src="<%= item.image %>" alt="<%= item.title %>">
             </div>
+            <div>
+              <!-- Product Info -->
+              <div class="product-info text-center">
+                <h2 class="woocommerce-loop-product__title text-lg font-semibold text-gray-800 mb-2">
+                  <%= item.title %>
+                </h2>
+                <span class="price block text-gray-700">
+                  <span class="mrp-price font-medium">
+                    MRP: <span class="woocommerce-Price-amount amount text-green-600">
+                      <bdi><span class="woocommerce-Price-currencySymbol">₹</span><%= item.price %></bdi>
+                    </span>
+                  </span>
+                </span>
+                <p class="inclusive-taxes text-xs text-gray-500">(Inclusive of All Taxes)</p>
+              </div>
+            </div>
+          </div>
         </div>
-    <% }); %>
-    
-    
-    
+      <% }); %>
     </div>
 
-   
-
-
-
-
-
-    <div class="swiper-button-next custom-swiper-button-next"></div>
-    <div class="swiper-button-prev custom-swiper-button-prev"></div>
-    <div class="swiper-pagination custom-swiper-pagination"></div>
+    <div class="text-[#CA9650] swiper-button-next custom-swiper-button-next"></div>
+    <div class="text-[#CA9650] swiper-button-prev custom-swiper-button-prev"></div>
+    <div class="text-[#CA9650] swiper-pagination custom-swiper-pagination"></div>
   </div>
 
   <!-- View More button -->
-  <p class="pl-4 pb-2 text-center" >
-    <a href="https://example.com" class="view-more">View More</a>
+  <p class="pl-4 pb-2 text-center">
+    <a href="/fivers-namkeen" class="view-more bg-[#CA9650] text-white py-2 px-4 rounded hover:bg-[#a07a43] transition duration-300">View More</a>
   </p>
 
 
-
-  <!-- Partition icon  -->
-
-  <div class="flex items-center justify-center py-2">
-    <div class="elementor-widget-container text-center">
-      <div class="flex items-center">
-        <div class="flex-1 border-t border-2 border-[#E64141] mr-2 w-24 sm:w-32 md:w-48"></div> <!-- Left line -->
-        <div class="elementor-icon elementor-divider__element">
-          <i aria-hidden="true" class="fas fa-store text-[#E64141] text-xl sm:text-2xl md:text-3xl"></i>
-        </div>
-        <div class="flex-1 border-t border-2 border-[#E64141] ml-2 w-24 sm:w-32 md:w-48"></div> <!-- Right line -->
-      </div>
-    </div>
-  </div>
-  
-  
-  
-  
-  
-  
-
- 
-
+</body>

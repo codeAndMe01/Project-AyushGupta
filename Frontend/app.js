@@ -84,6 +84,20 @@ app.get('/admin/fiveRs-Namkeen',(req,res)=>{
 })
 
 
+app.get('/fivers-namkeen',(req,res)=>{
+    res.render('categories/NamkeenFive',{
+        title: 'Category',
+        
+    })
+})
+
+app.get('/contact-us',(req,res)=>{
+    res.render('contactUs',{
+        title: 'Contact Us',
+        
+    })
+})
+
 app.use(router);
 
 // Start the server
