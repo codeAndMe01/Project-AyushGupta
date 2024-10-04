@@ -1,0 +1,132 @@
+<%- include('../partials/header') %>
+
+<div class="flex items-center justify-center min-h-screen my-8">
+    <div class="bg-white p-8 rounded-lg shadow-lg w-full max-w-3xl">
+        <h1 class="text-[#CA9650] text-center text-2xl font-bold mb-6">Feedback</h1>
+
+        <form class="grid grid-cols-1 md:grid-cols-2 gap-6" id="feedbackForm" onsubmit="return validateForm()">
+            <!-- Name -->
+            <div>
+                <label for="name" class="block text-gray-700 font-bold">Name <span class="text-red-500">*</span></label>
+                <input type="text" id="name" placeholder="Enter Name" class="mt-1 w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                <small id="nameError" class="text-red-500 hidden">Name is required.</small>
+            </div>
+
+            <!-- Email -->
+            <div>
+                <label for="email" class="block text-gray-700 font-bold">Email <span class="text-red-500">*</span></label>
+                <input type="email" id="email" placeholder="Enter Email" class="mt-1 w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                <small id="emailError" class="text-red-500 hidden">Enter a valid email address.</small>
+            </div>
+
+            <!-- Phone -->
+            <div>
+                <label for="phone" class="block text-gray-700 font-bold">Phone</label>
+                <input type="tel" id="phone" placeholder="Enter Phone Number" class="mt-1 w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                <small id="phoneError" class="text-red-500 hidden">Enter a valid phone number.</small>
+            </div>
+
+            <!-- Fax -->
+            <div>
+                <label for="fax" class="block text-gray-700 font-bold">Fax</label>
+                <input type="text" id="fax" placeholder="Enter Fax Number" class="mt-1 w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
+            </div>
+
+            <!-- City -->
+            <div>
+                <label for="city" class="block text-gray-700 font-bold">City</label>
+                <input type="text" id="city" placeholder="Enter City" class="mt-1 w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
+            </div>
+
+            <!-- State -->
+            <div>
+                <label for="state" class="block text-gray-700 font-bold">State</label>
+                <input type="text" id="state" placeholder="Enter State" class="mt-1 w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
+            </div>
+
+            <!-- Address -->
+            <div class="md:col-span-2">
+                <label for="address" class="block text-gray-700 font-bold">Address <span class="text-red-500">*</span></label>
+                <textarea id="address" placeholder="Enter Address" class="mt-1 w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500" required></textarea>
+                <small id="addressError" class="text-red-500 hidden">Address is required.</small>
+            </div>
+
+            <!-- Comment -->
+            <div class="md:col-span-2">
+                <label for="comment" class="block text-gray-700 font-bold">Comment <span class="text-red-500">*</span></label>
+                <textarea id="comment" placeholder="Enter Comment" class="mt-1 w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500" required></textarea>
+                <small id="commentError" class="text-red-500 hidden">Comment is required.</small>
+            </div>
+
+            <!-- Submit Button -->
+            <div class="md:col-span-2">
+                <button type="submit" class="w-full bg-[#CA9650] text-white font-bold py-2 rounded-md hover:bg-[#EC3539] transition duration-300">Submit</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+<!-- validation script  -->
+
+<script>
+function validateForm() {
+    let isValid = true;
+
+    // Name Validation
+    const name = document.getElementById('name');
+    const nameError = document.getElementById('nameError');
+    if (name.value.trim() === '') {
+        nameError.classList.remove('hidden');
+        isValid = false;
+    } else {
+        nameError.classList.add('hidden');
+    }
+
+    // Email Validation
+    const email = document.getElementById('email');
+    const emailError = document.getElementById('emailError');
+    const emailPattern = /^[^ ]+@[^ ]+\.[a-z]{2,6}$/;
+    if (!emailPattern.test(email.value)) {
+        emailError.classList.remove('hidden');
+        isValid = false;
+    } else {
+        emailError.classList.add('hidden');
+    }
+
+    // Phone Validation
+    const phone = document.getElementById('phone');
+    const phoneError = document.getElementById('phoneError');
+    const phonePattern = /^[0-9]{10}$/;
+    if (phone.value !== '' && !phonePattern.test(phone.value)) {
+        phoneError.classList.remove('hidden');
+        isValid = false;
+    } else {
+        phoneError.classList.add('hidden');
+    }
+
+    // Address Validation
+    const address = document.getElementById('address');
+    const addressError = document.getElementById('addressError');
+    if (address.value.trim() === '') {
+        addressError.classList.remove('hidden');
+        isValid = false;
+    } else {
+        addressError.classList.add('hidden');
+    }
+
+    // Comment Validation
+    const comment = document.getElementById('comment');
+    const commentError = document.getElementById('commentError');
+    if (comment.value.trim() === '') {
+        commentError.classList.remove('hidden');
+        isValid = false;
+    } else {
+        commentError.classList.add('hidden');
+    }
+
+    return isValid;
+}
+</script>
+
+<%- include('../partials/footer') %>

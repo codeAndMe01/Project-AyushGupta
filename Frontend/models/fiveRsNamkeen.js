@@ -1,21 +1,16 @@
-// models/Namkeen.js
 const mongoose = require('mongoose');
 
-// Define the Namkeen schema
-const fiveRsNamkeenSchema = new mongoose.Schema({
-    name: {
-        type: String,
-        required: true
-    },
-    image: {
-        type: String,  // Save the image file name or path
-        required: true
-    },
-    price: {
-        type: String,
-        required: true
-    }
+// Define the product schema
+const ProductSchema = new mongoose.Schema({
+    title: { type: String, required: true },
+    image: { type: String, required: true },
+    price: { type: Number, required: true },
+    description: { type: String },
+    weight: { type: Number },
+    category: { type: String, required: true },  // Category field
+    reviews: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Review' }]  // Link to Review schema
 });
 
-// Create and export the Namkeen model
-module.exports = mongoose.model('fiveRsNamkeenSchema', fiveRsNamkeenSchema);
+// Export the product model
+const Product = mongoose.model('Product', ProductSchema);
+module.exports = Product;
