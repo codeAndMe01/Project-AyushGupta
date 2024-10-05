@@ -1,18 +1,17 @@
 <div class="container-fluid">
 
     <!-- Page Heading -->
-     <div class="p-2 d-flex justify-content-between">
+    <div class="p-2 d-flex justify-content-between">
+        <h1 class="h3 mb-2 text-gray-800">All Product List</h1>
+        <button class="btn btn-outline-success">
+            <a class="outline-none" href="/products/new">Add New Product</a>
+        </button>
+    </div>
 
-         <h1 class="h3 mb-2 text-gray-800">5Rs Namkeen</h1>
-    
-         <button class="btn btn-outline-success"><a class="outline-none" href="/products/new">Add New Product </a>  </button>
-     </div>
-    
-
-    <!-- DataTales Example -->
+    <!-- Products Table -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
+            <h6 class="m-0 font-weight-bold text-primary">Product List</h6>
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -21,20 +20,28 @@
                         <tr>
                             <th>Name</th>
                             <th>Image</th>
+                            <th>Description</th>
                             <th>Price</th>
+                            <th>Category</th>
                             <th>Action</th>
                         </tr>
                     </thead>
- 
                     <tbody>
+                        <% products.forEach(product => { %>  <!-- Loop through products array -->
                         <tr>
-                            <td>Tiger Nixon</td>
-                            <td>System Architect</td>
-                            <td>Edinburgh</td>
-                            <td><button class="btn btn-outline-primary">Edit</button>   <button class="btn btn-outline-danger">Del</button></td>
-                            
+                            <td><%= product.title %></td>
+                            <td><img src="/<%= product.image %>" alt="img" width="80"></td>
+                            <td><%= product.description %></td>
+                            <td>₹<%= product.price %></td>
+                            <td><%= product.category.name %></td>
+                            <td>
+                                <a href="/products/update/<%= product._id %>" class="btn btn-outline-primary">Edit</a>
+                                <form action="/products/delete/<%= product._id %>" method="POST" style="display: inline-block;">
+                                    <button type="submit" class="btn btn-outline-danger">Del</button>
+                                </form>
+                            </td>
                         </tr>
-                     
+                        <% }) %> <!-- End loop -->
                     </tbody>
                 </table>
             </div>
