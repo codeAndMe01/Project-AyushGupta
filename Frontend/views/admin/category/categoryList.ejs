@@ -1,0 +1,45 @@
+
+
+<div class="container-fluid">
+
+    <!-- Page Heading -->
+    <div class="p-2 d-flex justify-content-between">
+        <h1 class="h3 mb-2 text-gray-800">All Category List</h1>
+        <button class="btn btn-outline-success">
+            <a class="outline-none" href="/categories/new">Add New Category</a>
+        </button>
+    </div>
+
+    <!-- Categories Table -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Category List</h6>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% categories.forEach(category => { %>  <!-- Loop through categories array -->
+                        <tr>
+                            <td><%= category.name %></td>
+                            <td>
+                                <a href="/categories/update/<%= category._id %>" class="btn btn-outline-primary">Edit</a>
+                                <form action="/categories/delete/<%= category._id %>" method="POST" style="display: inline-block;">
+                                    <button type="submit" class="btn btn-outline-danger">Del</button>
+                                </form>
+                            </td>
+                        </tr>
+                        <% }) %> <!-- End loop -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>

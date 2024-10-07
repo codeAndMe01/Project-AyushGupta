@@ -38,9 +38,11 @@ const readJsonFile = async (filePath) => {
 const categoryRoutes = require('./routes/categoryRoutes');
 const productRoutes = require('./routes/productRoutes');
 const reviewRoutes = require('./routes/reviewRoutes');
+const  inquiryRoutes = require('./routes/formRoutes/inquiryForm');
 app.use('/categories', categoryRoutes);
 app.use('/products', productRoutes);
 app.use('/reviews', reviewRoutes);
+app.use('/inquiry', inquiryRoutes);
 
 // Home Route
 app.get('/', async (req, res) => {
@@ -77,7 +79,6 @@ app.get('/feedback-form', (req, res) => res.render('forms/feedbackForm', { title
 
 // First Product Page
 app.get('/first-product', (req, res) => res.render('productPages/firstProduct', { title: 'First Product' }));
-
 
 
 
