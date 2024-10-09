@@ -39,10 +39,12 @@ const categoryRoutes = require('./routes/categoryRoutes');
 const productRoutes = require('./routes/productRoutes');
 const reviewRoutes = require('./routes/reviewRoutes');
 const  inquiryRoutes = require('./routes/formRoutes/inquiryForm');
+const feedbackRoutes =  require('./routes/formRoutes/feedbackForm')
 app.use('/categories', categoryRoutes);
 app.use('/products', productRoutes);
 app.use('/reviews', reviewRoutes);
 app.use('/inquiry', inquiryRoutes);
+app.use('/feedback', feedbackRoutes);
 
 // Home Route
 app.get('/', async (req, res) => {

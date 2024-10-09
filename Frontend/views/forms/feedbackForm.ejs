@@ -4,57 +4,57 @@
     <div class="bg-white p-8 rounded-lg shadow-lg w-full max-w-3xl">
         <h1 class="text-[#CA9650] text-center text-2xl font-bold mb-6">Feedback</h1>
 
-        <form class="grid grid-cols-1 md:grid-cols-2 gap-6" id="feedbackForm" onsubmit="return validateForm()">
+        <form class="grid grid-cols-1 md:grid-cols-2 gap-6" id="feedbackForm" action="/feedback/create" method="POST">
             <!-- Name -->
             <div>
                 <label for="name" class="block text-gray-700 font-bold">Name <span class="text-red-500">*</span></label>
-                <input type="text" id="name" placeholder="Enter Name" class="mt-1 w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                <input type="text" id="name" name="name" placeholder="Enter Name" class="mt-1 w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500" required>
                 <small id="nameError" class="text-red-500 hidden">Name is required.</small>
             </div>
 
             <!-- Email -->
             <div>
                 <label for="email" class="block text-gray-700 font-bold">Email <span class="text-red-500">*</span></label>
-                <input type="email" id="email" placeholder="Enter Email" class="mt-1 w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                <input type="email" id="email" name="email" placeholder="Enter Email" class="mt-1 w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500" required>
                 <small id="emailError" class="text-red-500 hidden">Enter a valid email address.</small>
             </div>
 
             <!-- Phone -->
             <div>
                 <label for="phone" class="block text-gray-700 font-bold">Phone</label>
-                <input type="tel" id="phone" placeholder="Enter Phone Number" class="mt-1 w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                <input type="tel" id="phone" name="phone" placeholder="Enter Phone Number" class="mt-1 w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
                 <small id="phoneError" class="text-red-500 hidden">Enter a valid phone number.</small>
             </div>
 
             <!-- Fax -->
             <div>
                 <label for="fax" class="block text-gray-700 font-bold">Fax</label>
-                <input type="text" id="fax" placeholder="Enter Fax Number" class="mt-1 w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                <input type="text" id="fax" name="fax" placeholder="Enter Fax Number" class="mt-1 w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
             </div>
 
             <!-- City -->
             <div>
                 <label for="city" class="block text-gray-700 font-bold">City</label>
-                <input type="text" id="city" placeholder="Enter City" class="mt-1 w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                <input type="text" id="city" name="city" placeholder="Enter City" class="mt-1 w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
             </div>
 
             <!-- State -->
             <div>
                 <label for="state" class="block text-gray-700 font-bold">State</label>
-                <input type="text" id="state" placeholder="Enter State" class="mt-1 w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                <input type="text" id="state" name="state" placeholder="Enter State" class="mt-1 w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
             </div>
 
             <!-- Address -->
             <div class="md:col-span-2">
                 <label for="address" class="block text-gray-700 font-bold">Address <span class="text-red-500">*</span></label>
-                <textarea id="address" placeholder="Enter Address" class="mt-1 w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500" required></textarea>
+                <textarea id="address" name="address" placeholder="Enter Address"  class="mt-1 w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500" required></textarea>
                 <small id="addressError" class="text-red-500 hidden">Address is required.</small>
             </div>
 
             <!-- Comment -->
             <div class="md:col-span-2">
                 <label for="comment" class="block text-gray-700 font-bold">Comment <span class="text-red-500">*</span></label>
-                <textarea id="comment" placeholder="Enter Comment" class="mt-1 w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500" required></textarea>
+                <textarea id="comment" name="comment" placeholder="Enter Comment" class="mt-1 w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500" required></textarea>
                 <small id="commentError" class="text-red-500 hidden">Comment is required.</small>
             </div>
 

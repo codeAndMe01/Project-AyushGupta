@@ -1,0 +1,50 @@
+<div class="container-fluid">
+
+    <!-- Page Heading -->
+    <div class="p-2 d-flex justify-content-between">
+        <h1 class="h3 mb-2 text-gray-800">All Inquiry Submissions</h1>
+        <button class="btn btn-outline-success">
+            <a class="outline-none" href="/inquiries/new">Add New Inquiry</a>
+        </button>
+    </div>
+
+    <!-- Inquiries Table -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Inquiry List</h6>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>Organisation Name</th>
+                            <th>Contact No</th>
+                            <th>Address</th>
+                            <th>Brand</th>
+                            <th>Contact Person</th>
+                            <th>GST</th>
+                            <th>Monthly Turnover</th>
+                            <th>Years in Business</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% inquiries.forEach(inquiry => { %>
+                        <tr>
+                            <td><%= inquiry.orgName %></td>
+                            <td><%= inquiry.contactNo %></td>
+                            <td><%= inquiry.address %></td>
+                            <td><%= inquiry.brand %></td>
+                            <td><%= inquiry.contactPerson %></td>
+                            <td><%= inquiry.gst %></td>
+                            <td><%= inquiry.monthlyTurnover %></td>
+                            <td><%= inquiry.yearsInBusiness %></td>
+                        </tr>
+                        <% }) %>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>

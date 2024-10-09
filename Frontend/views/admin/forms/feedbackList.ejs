@@ -1,0 +1,50 @@
+<div class="container-fluid">
+
+    <!-- Page Heading -->
+    <div class="p-2 d-flex justify-content-between">
+        <h1 class="h3 mb-2 text-gray-800">All Feedback Submissions</h1>
+        <button class="btn btn-outline-success">
+            <a class="outline-none" href="/inquiries/new">Add New Inquiry</a>
+        </button>
+    </div>
+
+    <!-- Inquiries Table -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Feedback List</h6>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>email</th>
+                            <th>Phone</th>
+                            <th>fax</th>
+                            <th>City</th>
+                            <th>State</th>
+                            <th>address</th>
+                            <th>Comment</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% feedback.forEach(inquiry => { %>
+                        <tr>
+                            <td><%= inquiry.name %></td>
+                            <td><%= inquiry.email %></td>
+                            <td><%= inquiry.phone %></td>
+                            <td><%= inquiry.fax %></td>
+                            <td><%= inquiry.city %></td>
+                            <td><%= inquiry.state %></td>
+                            <td><%= inquiry.address %></td>
+                            <td><%= inquiry.comment %></td>
+                        </tr>
+                        <% }) %>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>
