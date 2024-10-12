@@ -3,6 +3,12 @@ const app = express();
 const fs = require('fs').promises;
 const path = require('path');
 const bodyParser = require('body-parser');
+const session = require('express-session');
+const passport = require('passport');
+const flash = require('connect-flash');
+
+
+require('dotenv').config();
 
 // Set EJS as the template engine
 app.set('view engine', 'ejs');
@@ -23,6 +29,31 @@ app.use(express.urlencoded({ extended: true }));  // Parse URL-encoded bodies
 // Serve static files from "public" and "uploads" folders
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'uploads')));
+
+
+// -----User login ----------------------------------------------------
+// Session middleware
+app.use(session({
+    secret: 'secretKey',
+    resave: false,
+    saveUninitialized: false,
+  }));
+  
+  // Passport middleware
+  app.use(passport.initialize());
+  app.use(passport.session());
+  app.use(flash());
+  
+  // Passport config
+  require('./config/passport')(passport);
+  
+  // Routes
+  app.use(require('./routes/auth'));
+  app.use(require('./routes/protected'));
+
+
+// -----User login ----------------------------------------------------
+
 
 // Function to read JSON files
 const readJsonFile = async (filePath) => {
