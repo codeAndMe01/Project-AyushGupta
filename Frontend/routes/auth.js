@@ -2,7 +2,7 @@
 const express = require('express');
 const passport = require('passport');
 const User = require('../models/User');
-const crypto = require('crypto');
+const bcrypt = require('bcryptjs');
 const nodemailer = require('nodemailer');
 const { sendEmail } = require('../email');
 
@@ -17,7 +17,7 @@ router.get('/login', (req, res) => {
 
 // Login route
 router.post('/login', passport.authenticate('local', {
-  successRedirect: '/protected',
+  successRedirect: '/admin',
   failureRedirect: '/login-failed',
   failureFlash: true
 }));
@@ -90,27 +90,21 @@ router.post('/forgot-password', async (req, res) => {
 
 // Route to reset password
 router.post('/reset-password/:token', async (req, res) => {
-   
-    
-
     try {
         const user = await User.findOne({
-            resetPasswordToken: req.params.token,
-            resetPasswordExpires: { $gt: Date.now() }
+            _id: req.params.token,
         });
 
-        console.log(user);
         if (!user) {
             req.flash('error', 'Password reset token is invalid or has expired.');
             return res.redirect('/forgot-password');
         }
 
         if (req.body.password === req.body.confirm) {
-            user.password = await bcrypt.hash(req.body.password, 10);
+            user.password = await req.body.password;
             user.resetPasswordToken = undefined;
             user.resetPasswordExpires = undefined;
             await user.save();
-
             req.flash('success', 'Password has been updated successfully.');
             res.redirect('/login');
         } else {

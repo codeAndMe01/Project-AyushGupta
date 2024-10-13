@@ -12,7 +12,6 @@ const seedUsers = async () => {
         await mongoose.connect(mongoURI);
 
         const user = new User({
-            
             email: 'pradhan@gmail.com',
             password: 'pradhan123', // Yeh plain text password hai, production me hash karna mat bhoolna
         });

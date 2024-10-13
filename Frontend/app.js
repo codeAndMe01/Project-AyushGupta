@@ -6,6 +6,8 @@ const bodyParser = require('body-parser');
 const session = require('express-session');
 const passport = require('passport');
 const flash = require('connect-flash');
+const ensureAuthenticated = require('../Frontend/middleware/auth'); // Import the middleware
+
 
 
 require('dotenv').config();
@@ -71,11 +73,11 @@ const productRoutes = require('./routes/productRoutes');
 const reviewRoutes = require('./routes/reviewRoutes');
 const  inquiryRoutes = require('./routes/formRoutes/inquiryForm');
 const feedbackRoutes =  require('./routes/formRoutes/feedbackForm')
-app.use('/categories', categoryRoutes);
-app.use('/products', productRoutes);
-app.use('/reviews', reviewRoutes);
-app.use('/inquiry', inquiryRoutes);
-app.use('/feedback', feedbackRoutes);
+app.use('/categories', ensureAuthenticated,categoryRoutes);
+app.use('/products', ensureAuthenticated,productRoutes);
+app.use('/reviews',ensureAuthenticated, reviewRoutes);
+app.use('/inquiry',ensureAuthenticated, inquiryRoutes);
+app.use('/feedback', ensureAuthenticated,feedbackRoutes);
 
 // Home Route
 app.get('/', async (req, res) => {
@@ -100,7 +102,7 @@ app.get('/about', (req, res) => res.render('index', { title: 'About' }));
 app.get('/contact', (req, res) => res.render('index', { title: 'Contact' }));
 
 // Admin Routes
-app.get('/admin', (req, res) => res.render('admin/layout', { page: 'dashboard' }));
+app.get('/admin',ensureAuthenticated, (req, res) => res.render('admin/layout', { page: 'dashboard' }));
 app.get('/admin/productsList', (req, res) => res.render('admin/layout', { page: 'productsList' }));
 
 // Category Page
