@@ -73,11 +73,13 @@ const productRoutes = require('./routes/productRoutes');
 const reviewRoutes = require('./routes/reviewRoutes');
 const  inquiryRoutes = require('./routes/formRoutes/inquiryForm');
 const feedbackRoutes =  require('./routes/formRoutes/feedbackForm')
+const searchRoutes =  require('./routes/searchRoutes')
 app.use('/categories', ensureAuthenticated,categoryRoutes);
 app.use('/products', ensureAuthenticated,productRoutes);
 app.use('/reviews',ensureAuthenticated, reviewRoutes);
 app.use('/inquiry',ensureAuthenticated, inquiryRoutes);
 app.use('/feedback', ensureAuthenticated,feedbackRoutes);
+app.use( searchRoutes);
 
 // Home Route
 app.get('/', async (req, res) => {
