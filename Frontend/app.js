@@ -4,6 +4,8 @@ const fs = require('fs').promises;
 const path = require('path');
 const bodyParser = require('body-parser');
 const session = require('express-session');
+const Product = require('./models/Product');
+const Category = require('./models/Category');
 const passport = require('passport');
 const flash = require('connect-flash');
 const ensureAuthenticated = require('../Frontend/middleware/auth'); // Import the middleware
@@ -84,16 +86,17 @@ app.use( searchRoutes);
 // Home Route
 app.get('/', async (req, res) => {
     try {
-        const namkeenFilePath = path.join(__dirname, 'public', 'data', 'fiveRsNamkeen.json');
-        const fiveRsPuffsPath = path.join(__dirname, 'public', 'data', 'fiveRsPuffs.json');
+        // Fetch categories and products from the database
+        const categories = await Category.find({});
+        const productsByCategory = await Promise.all(
+            categories.map(async (category) => {
+                const products = await Product.find({ category: category._id }).populate('category');
+                return { category: category.name, products };
+            })
+        );
 
-        // Read both JSON files concurrently
-        const [namkeenData, fiveRsPuffsData] = await Promise.all([
-            readJsonFile(namkeenFilePath),
-            readJsonFile(fiveRsPuffsPath)
-        ]);
-
-        res.render('index', { title: 'Home', namkeenData, fiveRsPuffsData });
+        // Render the products by category in the template
+        res.render('index', { title: 'Home', productsByCategory });
     } catch (err) {
         res.status(500).send(err.message);
     }
@@ -108,7 +111,7 @@ app.get('/admin',ensureAuthenticated, (req, res) => res.render('admin/layout', {
 app.get('/admin/productsList', (req, res) => res.render('admin/layout', { page: 'productsList' }));
 
 // Category Page
-app.get('/fivers-namkeen', (req, res) => res.render('categories/NamkeenFive', { title: 'Category' }));
+app.get('/fivers-namkeen', (req, res) => res.render('categories/namkeenfive', { title: 'Category' }));
 
 // Inquiry and Feedback Forms
 app.get('/inquiry-form', (req, res) => res.render('forms/inquiryForm', { title: 'Inquiry Form' }));
