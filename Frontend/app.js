@@ -100,8 +100,8 @@ app.get('/', async (req, res) => {
 });
 
 // About and Contact Pages
-app.get('/about', (req, res) => res.render('index', { title: 'About' }));
-app.get('/contact', (req, res) => res.render('index', { title: 'Contact' }));
+app.get('/about-us', (req, res) => res.render('aboutUs', { title: 'About-Us' }));
+app.get('/contact-us', (req, res) => res.render('contactUs', { title: 'Contact-Us' }));
 
 // Admin Routes
 app.get('/admin',ensureAuthenticated, (req, res) => res.render('admin/layout', { page: 'dashboard' }));
