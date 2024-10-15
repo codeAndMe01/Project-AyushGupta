@@ -84,10 +84,13 @@
 
 
     
+    // all category swipers
+  
 
     var swiper = new Swiper(".custom-swiper", {
   slidesPerView: 1, // Set to 1 for mobile
   // centeredSlides: true,
+  loop:true, // Set to true
   spaceBetween: 30,
   navigation: {
     nextEl: ".custom-swiper-button-next",
@@ -104,11 +107,12 @@
     },
     // when window width is >= 768px
     768: {
-      slidesPerView: 3,
+      slidesPerView: 4,
       spaceBetween: 30,
     },
   },
 });
+
 
 
 

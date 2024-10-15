@@ -25,7 +25,7 @@ router.get('/search', async (req, res) => {
             ]
         }).populate('category'); // Populate category details for products
 
-        res.status(200).json(products);
+        res.render('search/searchPage', {products , query,  title: 'search' } );
     } catch (error) {
         console.error(error);
         res.status(500).json({ error: 'Error while searching products' });

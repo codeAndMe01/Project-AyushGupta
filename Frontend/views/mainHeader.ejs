@@ -92,6 +92,7 @@
         mobileMenu.classList.toggle('hidden');
     });
 
+
     // Add search functionality for desktop
     searchButton.addEventListener('click', () => {
         const query = searchBar.value;
@@ -100,6 +101,18 @@
             window.location.href = `/search?query=${query}`;
         }
     });
+
+    // for keyboard 
+    searchBar.addEventListener('keypress', (event) => {
+    if (event.key === 'Enter') { // Check if 'Enter' key is pressed
+        event.preventDefault(); // Prevent the default action (optional)
+        const query = searchBar.value.trim(); // Trim whitespace
+        if (query) {
+            window.location.href = `/search?query=${query}`;
+        }
+    }
+});
+
 
     // Add search functionality for mobile
     mobileSearchButton.addEventListener('click', () => {

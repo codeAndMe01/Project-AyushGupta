@@ -106,6 +106,8 @@ app.get('/', async (req, res) => {
 app.get('/about-us', (req, res) => res.render('aboutUs', { title: 'About-Us' }));
 app.get('/contact-us', (req, res) => res.render('contactUs', { title: 'Contact-Us' }));
 
+app.get('/search-us', (req, res) => res.render('search/searchPage', { title: 'search' }));
+
 // Admin Routes
 app.get('/admin',ensureAuthenticated, (req, res) => res.render('admin/layout', { page: 'dashboard' }));
 app.get('/admin/productsList', (req, res) => res.render('admin/layout', { page: 'productsList' }));
