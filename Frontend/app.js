@@ -112,8 +112,33 @@ app.get('/search-us', (req, res) => res.render('search/searchPage', { title: 'se
 app.get('/admin',ensureAuthenticated, (req, res) => res.render('admin/layout', { page: 'dashboard' }));
 app.get('/admin/productsList', (req, res) => res.render('admin/layout', { page: 'productsList' }));
 
-// Category Page
-app.get('/fivers-namkeen', (req, res) => res.render('categories/namkeenfive', { title: 'Category' }));
+// particular Category Page route ----------------------------------------------------------------
+app.get('/categories/:categoryName', async (req, res) => {
+    try {
+        const categoryName = req.params.categoryName; // Get the category name from the URL
+        // Find the category by name
+        const category = await Category.findOne({ name: categoryName });
+        
+        if (!category) {
+            return res.status(404).send('Category not found');
+        }
+        
+        // Fetch products that belong to the found category
+        const products = await Product.find({ category: category._id });
+        // console.log(products.map(product => product.image));
+
+        
+        // Render the view and pass the products to the template
+        res.render('categories/namkeenfive', { 
+            title: `Category: ${categoryName}`, 
+            products 
+        });
+    } catch (error) {
+        console.error(error);
+        res.status(500).send('Server error');
+    }
+});
+
 
 // Inquiry and Feedback Forms
 app.get('/inquiry-form', (req, res) => res.render('forms/inquiryForm', { title: 'Inquiry Form' }));

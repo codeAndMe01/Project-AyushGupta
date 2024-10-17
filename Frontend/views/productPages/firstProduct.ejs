@@ -1,86 +1,188 @@
 <%- include('../partials/header') %>
 
-    <!-- Product Page -->
-    <div class="container mx-auto p-6">
-
-        <!-- Product Section -->
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-            <!-- Product Image -->
-            <div class="flex justify-center">
-                <img src="../../Sancks.png" alt="Product Image" class="w-full max-w-sm object-cover">
-            </div>
-
-            <!-- Product Details -->
-            <div class="flex flex-col">
-                <h1 class="text-2xl font-bold">3D (20g)</h1>
-                <p class="text-gray-500 mt-2">MRP: ₹5.00</p>
-                <p class="text-green-600 mt-1">Enriched with the goodness of wheat, these are low calories, guilt-free treats!</p>
-                <p class="text-red-500 mt-1">Out of stock</p>
-                <p class="text-sm mt-4">Category: Bis</p>
-
-                <!-- Tabs -->
-                <div class="mt-6">
-                    <ul class="flex border-b">
-                        <li class="mr-1">
-                            <a href="#" class="bg-white inline-block py-2 px-4 text-blue-500 font-semibold">Description</a>
-                        </li>
-                        <li class="mr-1">
-                            <a href="#" class="bg-white inline-block py-2 px-4 text-gray-400 hover:text-gray-600">Additional Information</a>
-                        </li>
-                        <li class="mr-1">
-                            <a href="#" class="bg-white inline-block py-2 px-4 text-gray-400 hover:text-gray-600">Reviews (0)</a>
-                        </li>
-                    </ul>
-                    <div class="p-4">
-                        <p>Enriched with the goodness of wheat, these are low calories, guilt-free treats! Feel free to enjoy a handful of this snack.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Related Products -->
-        <div class="mt-12">
-            <h2 class="text-2xl font-bold">Related products</h2>
-            <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-6 mt-6">
-                <!-- Related Product 1 -->
-                <div class="bg-white shadow-lg rounded-lg overflow-hidden ">
-                    <img src="../../Sancks.png" alt="Product" class="w-full object-cover transition-transform duration-30 hover:scale-105">
-                    <div class="p-4">
-                        <h3 class="text-lg font-semibold">Salted Peanut (30g)</h3>
-                        <p class="mt-2">₹5.00</p>
-                        <a href="#" class="block mt-4 text-blue-500">Read more</a>
-                    </div>
-                </div>
-
-                <!-- Related Product 2 -->
-                <div class=" bg-white border rounded-lg p-4 text-center hover:shadow-lg transition-shadow border-2 border-[#CA9650]">
-                    <img src="../../Sancks.png" alt="Achari Masti Cups (20g)" class="mx-auto w-full  transition-transform duration-300 hover:scale-105">
-                    <div class="mt-4 font-semibold">Achari Masti Cups (20g)</div>
-                    <div class="text-gray-700 text-lg">MRP: ₹5.00</div>
-                </div>
-
-                <!-- Related Product 3 -->
-                <div class="border rounded-lg p-4 text-center hover:shadow-lg transition-shadow border-2 border-[#CA9650]">
-                    <img src="../../Sancks.png" alt="Achari Masti Cups (20g)" class="mx-auto w-full h-auto transition-transform duration-300 hover:scale-105">
-                    <div class="mt-4 font-semibold">Achari Masti Cups (20g)</div>
-                    <div class="text-gray-700 text-lg">MRP: ₹5.00</div>
-                </div>
-
-                <!-- Related Product 4 -->
-                <div class="border rounded-lg p-4 text-center hover:shadow-lg transition-shadow border-2 border-[#CA9650]">
-                    <img src="../../Sancks.png" alt="Achari Masti Cups (20g)" class="mx-auto w-full h-auto transition-transform duration-300 hover:scale-105">
-                    <div class="mt-4 font-semibold">Achari Masti Cups (20g)</div>
-                    <div class="text-gray-700 text-lg">MRP: ₹5.00</div>
-                </div>
-
-                 <div class="border rounded-lg p-4 text-center hover:shadow-lg transition-shadow border-2 border-[#CA9650]">
-                    <img src="../../Sancks.png" alt="Achari Masti Cups (20g)" class="mx-auto w-full h-auto transition-transform duration-300 hover:scale-105">
-                    <div class="mt-4 font-semibold">Achari Masti Cups (20g)</div>
-                    <div class="text-gray-700 text-lg">MRP: ₹5.00</div>
-                </div>
-                
-            </div>
-        </div>
+<!-- Product Page -->
+<div class="container mx-auto p-6">
+  <!-- Product Section -->
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+    <!-- Product Image -->
+    <div class="flex justify-center">
+      <img
+        src="../../Sancks.png"
+        alt="Product Image"
+        class="w-full max-w-sm object-cover"
+      />
     </div>
 
-    <%- include('../partials/footer') %>
+    <!-- Product Details -->
+    <div class="flex flex-col">
+      <h1 class="text-2xl font-bold">3D (20g)</h1>
+      <p class="text-gray-500 mt-2">MRP: ₹5.00</p>
+      <p class="text-green-600 mt-1">
+        Enriched with the goodness of wheat, these are low calories, guilt-free
+        treats!
+      </p>
+     
+
+      <!-- Tabs -->
+      <div class="mt-6">
+        <!-- Tab Navigation -->
+        <ul class="flex border-b">
+          <li class="mr-1">
+            <a
+              href="#"
+              class="tablink bg-white inline-block py-2 px-4 text-blue-500 font-semibold"
+              data-tab="description"
+              >Description</a
+            >
+          </li>
+          <li class="mr-1">
+            <a
+              href="#"
+              class="tablink bg-white inline-block py-2 px-4 text-gray-400 hover:text-gray-600"
+              data-tab="additional-info"
+              >Additional Information</a
+            >
+          </li>
+          <li class="mr-1">
+            <a
+              href="#"
+              class="tablink bg-white inline-block py-2 px-4 text-gray-400 hover:text-gray-600"
+              data-tab="reviews"
+              >Reviews (0)</a
+            >
+          </li>
+        </ul>
+
+        <!-- Tab Contents -->
+        <div id="description" class="tabcontent p-4">
+          <p class="text-gray-700">
+            Enriched with the goodness of wheat, these are low calories,
+            guilt-free treats! Feel free to enjoy a handful of this snack.
+          </p>
+        </div>
+
+        <div id="additional-info" class="tabcontent p-4 hidden">
+          <p class="text-gray-700">
+            Some additional information about the product.
+          </p>
+        </div>
+
+        <div id="reviews" class="tabcontent p-4 hidden">
+          <p class="font-medium text-gray-800">Your rating *</p>
+          <div class="rating flex space-x-1 mt-2">
+            <!-- Star Ratings -->
+            <span
+              class="star text-gray-400 cursor-pointer text-2xl"
+              data-value="1"
+              >&#9733;</span
+            >
+            <span
+              class="star text-gray-400 cursor-pointer text-2xl"
+              data-value="2"
+              >&#9733;</span
+            >
+            <span
+              class="star text-gray-400 cursor-pointer text-2xl"
+              data-value="3"
+              >&#9733;</span
+            >
+            <span
+              class="star text-gray-400 cursor-pointer text-2xl"
+              data-value="4"
+              >&#9733;</span
+            >
+            <span
+              class="star text-gray-400 cursor-pointer text-2xl"
+              data-value="5"
+              >&#9733;</span
+            >
+          </div>
+        </div>
+      </div>
+
+      <!-- ---------------------- -->
+    </div>
+  </div>
+
+  <!-- Related Products -->
+  <div class="mt-12">
+    <h2 class="text-2xl font-bold">Related products</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-6 mt-6">
+      <!-- Related Product 1 -->
+      <div
+      class="bg-white border rounded-lg p-4 text-center hover:shadow-lg transition-shadow border-2 border-[#CA9650]"
+    >
+      <img
+        src="../../Sancks.png"
+        alt="Achari Masti Cups (20g)"
+        class="mx-auto w-full transition-transform duration-300 hover:scale-105"
+      />
+      <div class="mt-4 font-semibold">Achari Masti Cups (20g)</div>
+      <div class="text-gray-700 text-lg">MRP: ₹5.00</div>
+      <a href="#" class="block mt-4 text-blue-500">Read more</a>
+    </div>
+
+      <!-- Related Product 2 -->
+      <div
+        class="bg-white border rounded-lg p-4 text-center hover:shadow-lg transition-shadow border-2 border-[#CA9650]"
+      >
+        <img
+          src="../../Sancks.png"
+          alt="Achari Masti Cups (20g)"
+          class="mx-auto w-full transition-transform duration-300 hover:scale-105"
+        />
+        <div class="mt-4 font-semibold">Achari Masti Cups (20g)</div>
+        <div class="text-gray-700 text-lg">MRP: ₹5.00</div>
+        <a href="#" class="block mt-4 text-blue-500">Read more</a>
+      </div>
+
+      <!-- Related Product 3 -->
+      <div
+        class="bg-white border rounded-lg p-4 text-center hover:shadow-lg transition-shadow border-2 border-[#CA9650]"
+      >
+        <img
+          src="../../Sancks.png"
+          alt="Achari Masti Cups (20g)"
+          class="mx-auto w-full transition-transform duration-300 hover:scale-105"
+        />
+        <div class="mt-4 font-semibold">Achari Masti Cups (20g)</div>
+        <div class="text-gray-700 text-lg">MRP: ₹5.00</div>
+        <a href="#" class="block mt-4 text-blue-500">Read more</a>
+      </div>
+
+      <!-- Related Product 4 -->
+      <div
+        class="bg-white border rounded-lg p-4 text-center hover:shadow-lg transition-shadow border-2 border-[#CA9650]"
+      >
+        <img
+          src="../../Sancks.png"
+          alt="Achari Masti Cups (20g)"
+          class="mx-auto w-full transition-transform duration-300 hover:scale-105"
+        />
+        <div class="mt-4 font-semibold">Achari Masti Cups (20g)</div>
+        <div class="text-gray-700 text-lg">MRP: ₹5.00</div>
+        <a href="#" class="block mt-4 text-blue-500">Read more</a>
+      </div>
+
+      <div
+        class="bg-white border rounded-lg p-4 text-center hover:shadow-lg transition-shadow border-2 border-[#CA9650]"
+      >
+        <img
+          src="../../Sancks.png"
+          alt="Achari Masti Cups (20g)"
+          class="mx-auto w-full transition-transform duration-300 hover:scale-105"
+        />
+        <div class="mt-4 font-semibold">Achari Masti Cups (20g)</div>
+        <div class="text-gray-700 text-lg">MRP: ₹5.00</div>
+        <a href="#" class="block mt-4 text-blue-500">Read more</a>
+      </div>
+
+
+      
+    </div>
+  </div>
+</div>
+
+
+
+<%- include('../partials/footer') %>

@@ -115,6 +115,52 @@
 
 
 
+  // review module JS
+   // Tab toggle functionality
+   const tablinks = document.querySelectorAll(".tablink");
+  const tabcontents = document.querySelectorAll(".tabcontent");
+
+  tablinks.forEach((link) => {
+    link.addEventListener("click", function (event) {
+      event.preventDefault();
+
+      // Hide all tab contents
+      tabcontents.forEach((content) => content.classList.add("hidden"));
+
+      // Remove active class from all links
+      tablinks.forEach((link) =>
+        link.classList.remove("text-blue-500", "font-semibold")
+      );
+      link.classList.add("text-blue-400");
+
+      // Show the selected tab content
+      const tabId = link.getAttribute("data-tab");
+      document.getElementById(tabId).classList.remove("hidden");
+
+      // Add active class to clicked link
+      link.classList.add("text-blue-500", "font-semibold");
+    });
+  });
+
+  // Star rating functionality
+  const stars = document.querySelectorAll(".star");
+  let selectedRating = 0;
+
+  stars.forEach((star) => {
+    star.addEventListener("click", function () {
+      selectedRating = this.getAttribute("data-value");
+
+      // Reset stars
+      stars.forEach((star) => star.classList.remove("text-yellow-400"));
+      stars.forEach((star) => star.classList.add("text-gray-400"));
+
+      // Highlight selected stars
+      for (let i = 0; i < selectedRating; i++) {
+        stars[i].classList.remove("text-gray-400");
+        stars[i].classList.add("text-yellow-400");
+      }
+    });
+  });
 
 
 
