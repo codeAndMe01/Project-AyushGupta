@@ -1,0 +1,240 @@
+<%- include('../partials/header') %>
+
+<!-- Product Page -->
+<div class="container mx-auto p-6">
+  <!-- Product Section -->
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+    <!-- Product Image -->
+    <div class="flex justify-center">
+      <img
+        src="/<%= product.image %>"
+        alt="<%= product.title %>"
+        class="w-full max-w-sm object-cover"
+      />
+    </div>
+
+    <!-- Product Details -->
+    <div class="flex flex-col">
+      <h1 class="text-2xl font-bold"><%= product.title %></h1>
+      <p class="text-gray-500 mt-2">MRP: ₹<%= product.price %></p>
+      <p class="text-green-600 mt-1"><%= product.description %></p>
+
+      <!-- Tabs -->
+      <div class="mt-6">
+        <!-- Tab Navigation -->
+        <ul class="flex border-b">
+          <li class="mr-1">
+            <a
+              href="#"
+              class="tablink bg-white inline-block py-2 px-4 text-blue-500 font-semibold"
+              data-tab="description"
+              >Description</a
+            >
+          </li>
+          <li class="mr-1">
+            <a
+              href="#"
+              class="tablink bg-white inline-block py-2 px-4 text-gray-400 hover:text-gray-600"
+              data-tab="reviews"
+              >Reviews (0)</a
+            >
+          </li>
+
+          <li class="mr-1">
+            <a
+              href="#"
+              class="tablink bg-white inline-block py-2 px-4 text-gray-400 hover:text-gray-600"
+              data-tab="additional-info"
+              >All Reviews</a
+            >
+          </li>
+        </ul>
+
+        <!-- Tab Contents -->
+        <div id="description" class="tabcontent p-4">
+          <p class="text-gray-700">
+            <%= product.description %>
+            <!-- Optionally use a longer description -->
+          </p>
+        </div>
+
+        <!-- All revies display here ----------------------------- -->
+        <div id="additional-info" class="tabcontent p-4 hidden">
+          <div id="pastReviews" >
+           
+            <div id="reviewsContainer" class="mt-2 ">
+              <!-- Reviews will be dynamically inserted here -->
+            </div>
+          </div>
+        </div>
+
+
+
+        <div id="reviews" class="tabcontent p-4 hidden">
+          <p class="font-medium text-gray-800">Your rating *</p>
+          <div class="rating flex space-x-1 mt-2">
+            <!-- Star Ratings -->
+            <span
+              class="star text-gray-400 cursor-pointer text-2xl"
+              data-value="1"
+              >&#9733;</span
+            >
+            <span
+              class="star text-gray-400 cursor-pointer text-2xl"
+              data-value="2"
+              >&#9733;</span
+            >
+            <span
+              class="star text-gray-400 cursor-pointer text-2xl"
+              data-value="3"
+              >&#9733;</span
+            >
+            <span
+              class="star text-gray-400 cursor-pointer text-2xl"
+              data-value="4"
+              >&#9733;</span
+            >
+            <span
+              class="star text-gray-400 cursor-pointer text-2xl"
+              data-value="5"
+              >&#9733;</span
+            >
+          </div>
+
+          <textarea
+            id="reviewText"
+            class="mt-4 w-full h-24 p-2 border border-gray-300"
+            placeholder="Write your review here..."
+          ></textarea>
+          <button
+            id="submitReview"
+            class="mt-2 bg-blue-500 text-white p-2 rounded"
+          >
+            Submit Review
+          </button>
+        </div>
+      </div>
+
+      <!-- ---------------------- -->
+    </div>
+  </div>
+
+  <!-- Related Products -->
+  <div class="mt-12">
+    <h2 class="text-2xl font-bold">Related products</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-6 mt-6">
+      <% relatedProducts.forEach(relatedProduct => { %>
+      <div
+        class="bg-white border rounded-lg p-4 text-center hover:shadow-lg transition-shadow border-2 border-[#CA9650]"
+      >
+        <img
+          src="/<%= relatedProduct.image %>"
+          alt="<%= relatedProduct.title %>"
+          class="mx-auto w-full transition-transform duration-300 hover:scale-105"
+        />
+        <div class="mt-4 font-semibold"><%= relatedProduct.title %></div>
+        <div class="text-gray-700 text-lg">
+          MRP: ₹<%= relatedProduct.price %>
+        </div>
+        <a
+          href="/product/<%= relatedProduct._id %>"
+          class="block mt-4 text-blue-500"
+          >Read more</a
+        >
+      </div>
+      <% }) %>
+    </div>
+  </div>
+</div>
+
+
+<script>
+  // review module JS---------------------------------- //////////////////////////////////----------
+   // Tab toggle functionality
+   const tablinks = document.querySelectorAll(".tablink");
+  const tabcontents = document.querySelectorAll(".tabcontent");
+
+  tablinks.forEach((link) => {
+    link.addEventListener("click", function (event) {
+      event.preventDefault();
+
+      // Hide all tab contents
+      tabcontents.forEach((content) => content.classList.add("hidden"));
+
+      // Remove active class from all links
+      tablinks.forEach((link) =>
+        link.classList.remove("text-blue-500", "font-semibold")
+      );
+      link.classList.add("text-blue-400");
+
+      // Show the selected tab content
+      const tabId = link.getAttribute("data-tab");
+      document.getElementById(tabId).classList.remove("hidden");
+
+      // Add active class to clicked link
+      link.classList.add("text-blue-500", "font-semibold");
+    });
+  });
+
+  // Star rating functionality----------------------------------------------------------------
+// Function to fetch and display top 3 reviews with star ratings in golden color
+async function fetchReviews(productId) {
+  try {
+    const response = await fetch(`/reviews/${productId}`); // Adjust the route as necessary
+    if (!response.ok) {
+      throw new Error('Failed to fetch reviews.');
+    }
+
+    const reviews = await response.json(); // Parse the JSON response
+
+    // Clear the existing reviews
+    const reviewsContainer = document.getElementById('reviewsContainer'); // Make sure this ID matches your HTML
+    reviewsContainer.innerHTML = '';
+
+    // Show only the top 3 reviews
+    const topReviews = reviews.slice(0, 3); // Select the first 3 reviews
+
+    // Append each review to the container
+    topReviews.forEach(review => {
+      const reviewElement = document.createElement('div');
+      reviewElement.classList.add('review');
+
+      // Create the star rating display
+      let starsHTML = '';
+      for (let i = 1; i <= 5; i++) {
+        if (i <= review.rating) {
+          // Filled star (golden color)
+          starsHTML += '<span class="star text-yellow-400">★</span>'; // Filled star in gold color
+        } else {
+          // Empty star (gray color)
+          starsHTML += '<span class="star text-gray-400">★</span>'; // Empty star in gray
+        }
+      }
+
+      // Add the review HTML
+      reviewElement.innerHTML = `
+        <div class="stars">
+          ${starsHTML} <!-- Star icons will be injected here -->
+        </div>
+        <p>${review.reviewText}</p>
+        <p><small>Submitted on: ${new Date(review.createdAt).toLocaleDateString()}</small></p>
+      `;
+      reviewsContainer.appendChild(reviewElement);
+    });
+
+  } catch (error) {
+    console.error('Error fetching reviews:', error);
+    alert('Failed to load reviews. Please try again later.');
+  }
+}
+
+// Call `fetchReviews()` when the page loads to display the top 3 reviews
+document.addEventListener('DOMContentLoaded', () => {
+  fetchReviews("<%= product._id %>"); // Call fetchReviews on page load to display reviews
+});
+</script>
+
+
+
+
+<%- include('../partials/footer') %>

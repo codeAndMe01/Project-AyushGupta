@@ -8,11 +8,12 @@ router.post('/create', async (req, res) => {
     try {
         const review = new Review(req.body);
         await review.save();
-        res.json(review);
+        res.status(201).json(review); // Send back the saved review
     } catch (err) {
-        res.status(400).json({ error: err.message });
+        res.status(400).json({ error: err.message }); // Send back the error message
     }
 });
+
 
 // Get reviews for a product
 router.get('/:productId', async (req, res) => {

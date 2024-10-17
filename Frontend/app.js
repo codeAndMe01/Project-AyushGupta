@@ -8,7 +8,8 @@ const Product = require('./models/Product');
 const Category = require('./models/Category');
 const passport = require('passport');
 const flash = require('connect-flash');
-const ensureAuthenticated = require('../Frontend/middleware/auth'); // Import the middleware
+const ensureAuthenticated = require('./middleware/auth'); // Import the middleware
+const fetchCategories = require('./middleware/category'); // Import the category middleware
 
 
 
@@ -69,6 +70,9 @@ const readJsonFile = async (filePath) => {
     }
 };
 
+// middleware for passing categories in every route 
+app.use(fetchCategories);
+
 // Routes
 const categoryRoutes = require('./routes/categoryRoutes');
 const productRoutes = require('./routes/productRoutes');
@@ -78,10 +82,13 @@ const feedbackRoutes =  require('./routes/formRoutes/feedbackForm')
 const searchRoutes =  require('./routes/searchRoutes')
 app.use('/categories', ensureAuthenticated,categoryRoutes);
 app.use('/products', ensureAuthenticated,productRoutes);
-app.use('/reviews',ensureAuthenticated, reviewRoutes);
+app.use('/reviews', reviewRoutes);
 app.use('/inquiry',ensureAuthenticated, inquiryRoutes);
 app.use('/feedback', ensureAuthenticated,feedbackRoutes);
 app.use( searchRoutes);
+
+
+
 
 // Home Route
 app.get('/', async (req, res) => {
@@ -96,7 +103,7 @@ app.get('/', async (req, res) => {
         );
 
         // Render the products by category in the template
-        res.render('index', { title: 'Home', productsByCategory });
+        res.render('index', { title: 'Home', productsByCategory , categories });
     } catch (err) {
         res.status(500).send(err.message);
     }
@@ -113,11 +120,12 @@ app.get('/admin',ensureAuthenticated, (req, res) => res.render('admin/layout', {
 app.get('/admin/productsList', (req, res) => res.render('admin/layout', { page: 'productsList' }));
 
 // particular Category Page route ----------------------------------------------------------------
-app.get('/categories/:categoryName', async (req, res) => {
+app.get('/category/:categoryName', async (req, res) => {
     try {
         const categoryName = req.params.categoryName; // Get the category name from the URL
         // Find the category by name
         const category = await Category.findOne({ name: categoryName });
+        const categories = await Category.find({});
         
         if (!category) {
             return res.status(404).send('Category not found');
@@ -131,7 +139,8 @@ app.get('/categories/:categoryName', async (req, res) => {
         // Render the view and pass the products to the template
         res.render('categories/namkeenfive', { 
             title: `Category: ${categoryName}`, 
-            products 
+            products ,
+            categories
         });
     } catch (error) {
         console.error(error);
@@ -144,8 +153,35 @@ app.get('/categories/:categoryName', async (req, res) => {
 app.get('/inquiry-form', (req, res) => res.render('forms/inquiryForm', { title: 'Inquiry Form' }));
 app.get('/feedback-form', (req, res) => res.render('forms/feedbackForm', { title: 'Feedback Form' }));
 
-// First Product Page
-app.get('/first-product', (req, res) => res.render('productPages/firstProduct', { title: 'First Product' }));
+
+// Route for specific product pages
+app.get('/product/:productId', async (req, res) => {
+    try {
+        const productId = req.params.productId; // Get product ID from the URL
+        const product = await Product.findById(productId); // Fetch product by ID
+
+        if (!product) {
+            return res.status(404).send('Product not found');
+        }
+
+        // Fetch related products (example: based on category or some other logic)
+        const relatedProducts = await Product.find({ 
+            category: product.category, 
+            _id: { $ne: productId } // Exclude the current product
+        }).limit(5); // Limit the number of related products
+
+        // Render the product page with dynamic data
+        res.render('productPages/productDetail', { 
+            title: 'Product Details',
+            product, 
+            relatedProducts 
+        });
+    } catch (error) {
+        console.error(error);
+        res.status(500).send('Server error');
+    }
+});
+
 
 
 

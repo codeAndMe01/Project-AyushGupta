@@ -29,10 +29,11 @@
                         </svg>
                     </a>
                     <div class="absolute left-0 mt-2 w-48 bg-white border border-gray-200 shadow-md rounded-lg opacity-0 transition-opacity duration-300 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto">
-                        <a href="#rs-1/" class="block px-4 py-2 text-sm hover:bg-gray-100">Rs.1</a>
-                        <a href="#rs-2/" class="block px-4 py-2 text-sm hover:bg-gray-100">Rs.2</a>
-                        <a href="#rs-5/" class="block px-4 py-2 text-sm hover:bg-gray-100">Rs.5</a>
-                        <a href="#rs-10/" class="block px-4 py-2 text-sm hover:bg-gray-100">Rs.10</a>
+                        <% categories.forEach(category => { %>
+                            <a href="/category/<%= category.name %>" class="block px-4 py-2 text-sm hover:bg-gray-100">
+                                <%= category.name %>
+                            </a>
+                        <% }) %>
                     </div>
                 </div>
                 <a href="/inquiry-form" class="text-[#000000] hover:text-gray-600">Distribution / Super stockist</a>
@@ -60,10 +61,12 @@
                         </svg>
                     </a>
                     <div class="absolute left-0 mt-2 w-48 bg-white border border-gray-200 shadow-md rounded-lg opacity-0 transition-opacity duration-300 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto">
-                        <a href="#rs-1/" class="block px-4 py-2 text-sm hover:bg-gray-100">Rs.1</a>
-                        <a href="#rs-2/" class="block px-4 py-2 text-sm hover:bg-gray-100">Rs.2</a>
-                        <a href="#rs-5/" class="block px-4 py-2 text-sm hover:bg-gray-100">Rs.5</a>
-                        <a href="#rs-10/" class="block px-4 py-2 text-sm hover:bg-gray-100">Rs.10</a>
+                         <!-- Loop through categories and show them as links -->
+            <% categories.forEach(category => { %>
+                <a href="/category/<%= category.name %>" class="block px-4 py-2 text-sm hover:bg-gray-100">
+                    <%= category.name %>
+                </a>
+            <% }) %>
                     </div>
                 </div>
                 <a href="/inquiry-form" class="text-[#000000] hover:text-gray-600">Distribution / Super stockist</a>
