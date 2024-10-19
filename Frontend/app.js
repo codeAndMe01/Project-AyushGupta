@@ -164,7 +164,7 @@ app.post('/inquiry-form/create', (req, res) => {
     newFeedback.save()
         .then(() => {
             // Set flash message for success
-            req.flash('success_msg', 'Feedback submitted successfully!');
+            req.flash('success_msg', 'Inquiry submitted successfully!');
             res.redirect('/inquiry-form'); // Redirect without additional data
         })
         .catch(err => {
@@ -208,7 +208,6 @@ app.get('/product/:productId', async (req, res) => {
         res.status(500).send('Server error');
     }
 });
-
 
 
 

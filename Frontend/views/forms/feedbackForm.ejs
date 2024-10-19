@@ -1,23 +1,27 @@
 <%- include('../partials/header') %>
 <!-- Success Message -->
 <!-- Flash Success Message -->
-<% if (successMessage.length > 0) { %>
-    <div id="success-message" class="bg-green-100 text-green-700 p-2 rounded relative mb-4">
-        <%= successMessage %>
-        <button class="absolute top-0 right-0 p-1" onclick="document.getElementById('success-message').style.display='none'">&times;</button>
-    </div>
-<% } %>
 
-<% if (errorMessage.length > 0) { %>
-    <div id="error-message" class="bg-red-100 text-red-700 p-2 rounded relative mb-4">
-        <%= errorMessage %>
-        <button class="absolute top-0 right-0 p-1" onclick="document.getElementById('error-message').style.display='none'">&times;</button>
-    </div>
-<% } %>
 
 <div class="flex items-center justify-center min-h-screen my-8 ">
+   
     <div class="bg-white p-8 rounded-lg shadow-lg w-full max-w-3xl border-2 border-[#A07A43]">
         <h1 class="text-[#CA9650] text-center text-2xl font-bold mb-6">Feedback</h1>
+
+        <!-- //alert------------ -->
+        <% if (successMessage.length > 0) { %>
+            <div id="success-message" class="bg-green-100 text-green-700 p-2 rounded relative mb-4">
+                <%= successMessage %>
+                <button class="absolute top-0 right-0 p-1" onclick="document.getElementById('success-message').style.display='none'">&times;</button>
+            </div>
+        <% } %>
+        
+        <% if (errorMessage.length > 0) { %>
+            <div id="error-message" class="bg-red-100 text-red-700 p-2 rounded relative mb-4">
+                <%= errorMessage %>
+                <button class="absolute top-0 right-0 p-1" onclick="document.getElementById('error-message').style.display='none'">&times;</button>
+            </div>
+        <% } %>
 
         <form class="grid grid-cols-1 md:grid-cols-2 gap-6" id="feedbackForm" action="/feedback/create" method="POST" onsubmit="return validateForm()">
             <!-- Name -->
@@ -37,7 +41,7 @@
             <!-- Phone -->
             <div>
                 <label for="phone" class="block text-gray-700 font-bold">Phone</label>
-                <input type="tel" id="phone" name="phone" placeholder="Enter Phone Number" class="mt-1 w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                <input type="tel" id="phone" name="phone" placeholder="Enter Phone Number" class="mt-1 w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500" required>
                 <small id="phoneError" class="text-red-500 hidden">Enter a valid phone number.</small>
             </div>
 
