@@ -1,20 +1,25 @@
 <%- include('../partials/header') %>
-<% if (successMessage) { %>
-    <div class="bg-green-100 text-green-700 p-2 rounded mt-4">
-      <%= successMessage %>
+<!-- Success Message -->
+<!-- Flash Success Message -->
+<% if (successMessage.length > 0) { %>
+    <div id="success-message" class="bg-green-100 text-green-700 p-2 rounded relative mb-4">
+        <%= successMessage %>
+        <button class="absolute top-0 right-0 p-1" onclick="document.getElementById('success-message').style.display='none'">&times;</button>
     </div>
-  <% } %>
-  
-  <% if (errorMessage) { %>
-    <div class="bg-red-100 text-red-700 p-2 rounded mt-4">
-      <%= errorMessage %>
+<% } %>
+
+<% if (errorMessage.length > 0) { %>
+    <div id="error-message" class="bg-red-100 text-red-700 p-2 rounded relative mb-4">
+        <%= errorMessage %>
+        <button class="absolute top-0 right-0 p-1" onclick="document.getElementById('error-message').style.display='none'">&times;</button>
     </div>
-  <% } %>
+<% } %>
+
 <div class="flex items-center justify-center min-h-screen my-8 ">
     <div class="bg-white p-8 rounded-lg shadow-lg w-full max-w-3xl border-2 border-[#A07A43]">
         <h1 class="text-[#CA9650] text-center text-2xl font-bold mb-6">Feedback</h1>
 
-        <form class="grid grid-cols-1 md:grid-cols-2 gap-6" id="feedbackForm" action="/feedback/create" method="POST">
+        <form class="grid grid-cols-1 md:grid-cols-2 gap-6" id="feedbackForm" action="/feedback/create" method="POST" onsubmit="return validateForm()">
             <!-- Name -->
             <div>
                 <label for="name" class="block text-gray-700 font-bold">Name <span class="text-red-500">*</span></label>
@@ -76,9 +81,7 @@
     </div>
 </div>
 
-
 <!-- validation script  -->
-
 <script>
 function validateForm() {
     let isValid = true;

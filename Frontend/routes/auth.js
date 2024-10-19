@@ -6,30 +6,34 @@ const bcrypt = require('bcryptjs');
 const nodemailer = require('nodemailer');
 const { sendEmail } = require('../email');
 
-
 const router = express.Router();
-
-
-
 router.get('/login', (req, res) => {
-  res.render('admin/auth/login');
+    res.render('admin/auth/login', { 
+        successMessage: req.flash('success'),
+        errorMessage: req.flash('error') // Pass error message to view
+    });
 });
 
 // Login route
 router.post('/login', passport.authenticate('local', {
-  successRedirect: '/admin',
-  failureRedirect: '/login-failed',
-  failureFlash: true
+    successRedirect: '/admin',
+    failureRedirect: '/login', // Redirect to login route on failure
+    failureFlash: 'Invalid username or password.' // Flash message on failure
 }));
 
 // Logout route
 router.get('/logout', (req, res) => {
-  req.logout((err) => {
-    if (err) {
-      return res.send('Error logging out');
-    }
-    res.send('Logged out successfully');
-  });
+    req.logout((err) => {
+        if (err) {
+          return res.send('Error logging out');
+        }
+    
+        // Set flash message for successful logout
+        req.flash('success', 'You have logged out successfully.');
+    
+        // Redirect to login page
+        res.redirect('/login');
+      });
 });
 
 

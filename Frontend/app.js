@@ -10,6 +10,8 @@ const passport = require('passport');
 const flash = require('connect-flash');
 const ensureAuthenticated = require('./middleware/auth'); // Import the middleware
 const fetchCategories = require('./middleware/category'); // Import the category middleware
+const Inquiry = require('./models/InquiryForm');
+const Feedback = require('./models/Feedback')
 
 
 
@@ -48,6 +50,8 @@ app.use(session({
   app.use(passport.initialize());
   app.use(passport.session());
   app.use(flash());
+
+
   
   // Passport config
   require('./config/passport')(passport);
@@ -150,10 +154,33 @@ app.get('/category/:categoryName', async (req, res) => {
 
 
 // Inquiry and Feedback Forms
-app.get('/inquiry-form', (req, res) => res.render('forms/inquiryForm', { title: 'Inquiry Form' }));
-app.get('/feedback-form', (req, res) => res.render('forms/feedbackForm', { title: 'Feedback Form' }));
+app.get('/inquiry-form', (req, res) => res.render('forms/inquiryForm', { title: 'Inquiry Form', successMessage: req.flash('success_msg'), // Correctly passing success message
+    errorMessage: req.flash('error_msg') }));
 
 
+app.post('/inquiry-form/create', (req, res) => {
+    const newFeedback = new Feedback(req.body);
+    
+    newFeedback.save()
+        .then(() => {
+            // Set flash message for success
+            req.flash('success_msg', 'Feedback submitted successfully!');
+            res.redirect('/inquiry-form'); // Redirect without additional data
+        })
+        .catch(err => {
+            console.error(err);
+            // Set flash message for error
+            req.flash('error_msg', 'Feedback submission failed. Please try again.');
+            res.redirect('/inquiry-form'); // Redirect without additional data
+        });
+});
+
+    
+    
+
+app.get('/feedback-form', (req, res) => res.render('forms/feedbackForm', { successMessage: req.flash('success_msg'), // Pass success message
+    errorMessage: req.flash('error_msg'), // Pass error message
+    title: 'Feedback'  }));
 // Route for specific product pages
 app.get('/product/:productId', async (req, res) => {
     try {

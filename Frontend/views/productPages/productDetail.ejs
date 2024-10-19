@@ -1,5 +1,43 @@
 <%- include('../partials/header') %>
 
+<style>
+  /* Add this to your CSS file */
+.notification {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  min-width: 300px;
+  padding: 10px;
+  border-radius: 5px;
+  color: white;
+  z-index: 1000;
+  opacity: 0; /* Start invisible */
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.notification.show {
+  opacity: 1; /* Fade in */
+  transform: translateY(0); /* Slide down */
+}
+
+.notification.hide {
+  opacity: 0; /* Fade out */
+  transform: translateY(-20px); /* Slide up */
+}
+
+.success {
+  background-color: #4CAF50; /* Green */
+}
+
+.error {
+  background-color: #F44336; /* Red */
+}
+
+</style>
+
+<!-- Add this to your HTML body -->
+<div id="notificationContainer"></div>
+
 <!-- Product Page -->
 <div class="container mx-auto p-6">
   <!-- Product Section -->
@@ -205,7 +243,7 @@ document.getElementById('submitReview').addEventListener('click', async () => {
   const productId = "<%= product._id %>"; // Fetch the product ID from your template
 
   if (!reviewText || !rating) {
-    alert('Please fill in both the review and the rating.');
+    showNotification('Please fill in both the review and the rating.', 'error');
     return;
   }
 
@@ -230,15 +268,42 @@ document.getElementById('submitReview').addEventListener('click', async () => {
     document.getElementById('reviewText').value = ''; // Reset review text
     document.querySelectorAll('.star').forEach(star => star.classList.remove('selected', 'text-yellow-400')); // Reset star rating
 
-    alert('Review submitted successfully.');
-
     const newReview = await response.json();
     fetchReviews(productId); // Fetch the updated reviews after submission
+
+    showNotification('Review submitted successfully.', 'success');
   } catch (error) {
     console.error('Error submitting review:', error);
-    alert('Failed to submit review. Please try again later.');
+    showNotification('Failed to submit review. Please try again later.', 'error');
   }
 });
+
+// Function to show notification
+function showNotification(message, type) {
+  const notification = document.createElement('div');
+  notification.className = `notification ${type}`;
+  notification.innerText = message;
+
+  // Append notification to container
+  const container = document.getElementById('notificationContainer');
+  container.appendChild(notification);
+
+  // Show the notification
+  setTimeout(() => {
+    notification.classList.add('show');
+
+    // Hide after 3 seconds
+    setTimeout(() => {
+      notification.classList.remove('show');
+      notification.classList.add('hide');
+
+      // Remove notification after the animation
+      setTimeout(() => {
+        container.removeChild(notification);
+      }, 500); // Match with the duration of the CSS transition
+    }, 3000); // Duration to show notification
+  }, 100); // Small delay to allow DOM update
+}
 
 // Fetch and display top 3 reviews --------------------------------------
 async function fetchReviews(productId) {

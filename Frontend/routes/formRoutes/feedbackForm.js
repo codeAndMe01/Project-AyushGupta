@@ -5,17 +5,21 @@ const Feedback = require('../../models/Feedback');
 
 // Route to handle form submissions
 router.post('/create', (req, res) => {
-    const newFeedback = new Feedback(req.body);
-    newFeedback.save()
-      .then(() => {
-        // Render the page with a success message
-        res.render('./forms/feedbackForm', { successMessage: 'Feedback submitted successfully!' ,title: 'Feedback'});
-      })
-      .catch(err => {
-        console.error(err);
-        res.render('./forms/feedbackForm', { errorMessage: 'Feedback submission failed' });
-      });
-  });
+  const newFeedback = new Feedback(req.body);
+  
+  newFeedback.save()
+    .then(() => {
+      req.flash('success_msg', 'Feedback submitted successfully!'); // Set success message
+      res.redirect('/feedback-form'); // Redirect to the form page
+    })
+    .catch(err => {
+      console.error(err);
+      req.flash('error_msg', 'Feedback submission failed. Please try again.'); // Set error message
+      res.redirect('/feedback-form'); // Redirect to the form page
+    });
+});
+
+
   
   
 

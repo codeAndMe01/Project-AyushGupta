@@ -8,18 +8,6 @@ router.get('/form', (req, res) => {
 });
 
 // Route to handle form submissions
-router.post('/create', async (req, res) => {
-    console.log(req.body)
-    try {
-        
-        const newInquiry = new Inquiry(req.body);
-        await newInquiry.save();
-        res.send("Thanks for submitting")
-        // res.redirect('/thankyouPage'); // Redirect to the page displaying all inquiries
-    } catch (err) {
-        res.status(500).send('Error saving the inquiry data.');
-    }
-});
 
 // Route to display all inquiries
 router.get('/', async (req, res) => {
