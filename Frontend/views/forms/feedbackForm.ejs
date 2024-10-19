@@ -1,5 +1,15 @@
 <%- include('../partials/header') %>
-
+<% if (successMessage) { %>
+    <div class="bg-green-100 text-green-700 p-2 rounded mt-4">
+      <%= successMessage %>
+    </div>
+  <% } %>
+  
+  <% if (errorMessage) { %>
+    <div class="bg-red-100 text-red-700 p-2 rounded mt-4">
+      <%= errorMessage %>
+    </div>
+  <% } %>
 <div class="flex items-center justify-center min-h-screen my-8 ">
     <div class="bg-white p-8 rounded-lg shadow-lg w-full max-w-3xl border-2 border-[#A07A43]">
         <h1 class="text-[#CA9650] text-center text-2xl font-bold mb-6">Feedback</h1>

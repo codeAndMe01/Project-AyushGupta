@@ -147,37 +147,100 @@
   </div>
 </div>
 
-
 <script>
-  // review module JS---------------------------------- //////////////////////////////////----------
-   // Tab toggle functionality
-   const tablinks = document.querySelectorAll(".tablink");
+  // Tab toggle functionality -------------------------------------------
+document.addEventListener('DOMContentLoaded', () => {
+  const tablinks = document.querySelectorAll(".tablink");
   const tabcontents = document.querySelectorAll(".tabcontent");
 
-  tablinks.forEach((link) => {
+  // Handle tab click and toggle content
+  tablinks.forEach(link => {
     link.addEventListener("click", function (event) {
       event.preventDefault();
 
       // Hide all tab contents
-      tabcontents.forEach((content) => content.classList.add("hidden"));
+      tabcontents.forEach(content => content.classList.add("hidden"));
 
       // Remove active class from all links
-      tablinks.forEach((link) =>
+      tablinks.forEach(link =>
         link.classList.remove("text-blue-500", "font-semibold")
       );
-      link.classList.add("text-blue-400");
-
-      // Show the selected tab content
+      
+      // Add active class to clicked link and show corresponding content
+      link.classList.add("text-blue-500", "font-semibold");
       const tabId = link.getAttribute("data-tab");
       document.getElementById(tabId).classList.remove("hidden");
-
-      // Add active class to clicked link
-      link.classList.add("text-blue-500", "font-semibold");
     });
   });
+});
 
-  // Star rating functionality----------------------------------------------------------------
-// Function to fetch and display top 3 reviews with star ratings in golden color
+// Star rating functionality -------------------------------------------
+const stars = document.querySelectorAll(".rating .star");
+let selectedRating = 0;
+
+// Handle star selection and change color to golden when selected
+stars.forEach(star => {
+  star.addEventListener("click", () => {
+    // Reset all stars
+    stars.forEach(s => s.classList.remove("selected", "text-yellow-400"));
+    
+    // Highlight the selected stars
+    star.classList.add("selected", "text-yellow-400");
+    selectedRating = star.getAttribute("data-value");
+
+    // Highlight all previous stars as well
+    stars.forEach(s => {
+      if (s.getAttribute("data-value") <= selectedRating) {
+        s.classList.add("text-yellow-400");
+      }
+    });
+  });
+});
+
+// Submit review functionality -------------------------------------------
+document.getElementById('submitReview').addEventListener('click', async () => {
+  const reviewText = document.getElementById('reviewText').value;
+  const selectedStar = document.querySelector('.star.selected'); // Get the selected star
+  const rating = selectedStar ? selectedStar.getAttribute('data-value') : null; // Check if a star is selected
+  const productId = "<%= product._id %>"; // Fetch the product ID from your template
+
+  if (!reviewText || !rating) {
+    alert('Please fill in both the review and the rating.');
+    return;
+  }
+
+  try {
+    const response = await fetch('/reviews/create', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        reviewText,
+        rating,
+        product: productId,
+      }),
+    });
+
+    if (!response.ok) {
+      throw new Error('Failed to submit review.');
+    }
+
+    // Clear the review text and rating after successful submission
+    document.getElementById('reviewText').value = ''; // Reset review text
+    document.querySelectorAll('.star').forEach(star => star.classList.remove('selected', 'text-yellow-400')); // Reset star rating
+
+    alert('Review submitted successfully.');
+
+    const newReview = await response.json();
+    fetchReviews(productId); // Fetch the updated reviews after submission
+  } catch (error) {
+    console.error('Error submitting review:', error);
+    alert('Failed to submit review. Please try again later.');
+  }
+});
+
+// Fetch and display top 3 reviews --------------------------------------
 async function fetchReviews(productId) {
   try {
     const response = await fetch(`/reviews/${productId}`); // Adjust the route as necessary
@@ -185,17 +248,20 @@ async function fetchReviews(productId) {
       throw new Error('Failed to fetch reviews.');
     }
 
-    const reviews = await response.json(); // Parse the JSON response
+    const reviews = await response.json(); // Parse JSON response
 
-    // Clear the existing reviews
-    const reviewsContainer = document.getElementById('reviewsContainer'); // Make sure this ID matches your HTML
+    // Sort reviews by createdAt in descending order (latest first)
+    reviews.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+
+    // Clear existing reviews
+    const reviewsContainer = document.getElementById('reviewsContainer');
     reviewsContainer.innerHTML = '';
 
-    // Show only the top 3 reviews
-    const topReviews = reviews.slice(0, 3); // Select the first 3 reviews
+    // Show only the latest 3 reviews
+    const latestReviews = reviews.slice(0, 3);
 
     // Append each review to the container
-    topReviews.forEach(review => {
+    latestReviews.forEach(review => {
       const reviewElement = document.createElement('div');
       reviewElement.classList.add('review');
 
@@ -204,17 +270,17 @@ async function fetchReviews(productId) {
       for (let i = 1; i <= 5; i++) {
         if (i <= review.rating) {
           // Filled star (golden color)
-          starsHTML += '<span class="star text-yellow-400">★</span>'; // Filled star in gold color
+          starsHTML += '<span class="star text-yellow-400">★</span>';
         } else {
           // Empty star (gray color)
-          starsHTML += '<span class="star text-gray-400">★</span>'; // Empty star in gray
+          starsHTML += '<span class="star text-gray-400">★</span>';
         }
       }
 
       // Add the review HTML
       reviewElement.innerHTML = `
         <div class="stars">
-          ${starsHTML} <!-- Star icons will be injected here -->
+          ${starsHTML}
         </div>
         <p>${review.reviewText}</p>
         <p><small>Submitted on: ${new Date(review.createdAt).toLocaleDateString()}</small></p>
@@ -228,10 +294,11 @@ async function fetchReviews(productId) {
   }
 }
 
-// Call `fetchReviews()` when the page loads to display the top 3 reviews
+// Fetch reviews on page load -------------------------------------------
 document.addEventListener('DOMContentLoaded', () => {
-  fetchReviews("<%= product._id %>"); // Call fetchReviews on page load to display reviews
+  fetchReviews("<%= product._id %>"); // Fetch and display reviews when the page loads
 });
+
 </script>
 
 

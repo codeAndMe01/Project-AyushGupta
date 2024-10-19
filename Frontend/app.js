@@ -84,7 +84,7 @@ app.use('/categories', ensureAuthenticated,categoryRoutes);
 app.use('/products', ensureAuthenticated,productRoutes);
 app.use('/reviews', reviewRoutes);
 app.use('/inquiry',ensureAuthenticated, inquiryRoutes);
-app.use('/feedback', ensureAuthenticated,feedbackRoutes);
+app.use('/feedback',feedbackRoutes);
 app.use( searchRoutes);
 
 

@@ -29,30 +29,34 @@
     <div class="swiper-wrapper">
       <% productData.forEach(function(item) { %>
         <div class="swiper-slide custom-swiper-slide">
-          <div class="border-2 border-[#CA9650] rounded-lg flex flex-col items-center h-full w-full">
-            <div class="px-2 py-4 flex items-center h-[200px] w-[220px]">
-              <img class="h-full w-full object-cover transition-transform duration-300 hover:scale-110" src="<%= item.image %>" alt="<%= item.title %>">
-            </div>
-            <div>
-              <!-- Product Info -->
-              <div class="product-info text-center">
-                <h2 class="woocommerce-loop-product__title text-lg font-semibold text-gray-800 mb-2">
-                  <%= item.title %>
-                </h2>
-                <span class="price block text-gray-700">
-                  <span class="mrp-price font-medium">
-                    MRP: <span class="woocommerce-Price-amount amount text-green-600">
-                      <bdi><span class="woocommerce-Price-currencySymbol">₹</span><%= item.price %></bdi>
+          <!-- Anchor tag wrapping the whole slide -->
+          <a href="/product/<%= item._id %>" class="block h-full w-full">
+            <div class="border-2 border-[#CA9650] rounded-lg flex flex-col items-center h-full w-full">
+              <div class="px-2 py-4 flex items-center h-[200px] w-[220px]">
+                <img class="h-full w-full object-cover transition-transform duration-300 hover:scale-110" src="<%= item.image %>" alt="<%= item.title %>">
+              </div>
+              <div>
+                <!-- Product Info -->
+                <div class="product-info text-center">
+                  <h2 class="woocommerce-loop-product__title text-lg font-semibold text-gray-800 mb-2">
+                    <%= item.title %>
+                  </h2>
+                  <span class="price block text-gray-700">
+                    <span class="mrp-price font-medium">
+                      MRP: <span class="woocommerce-Price-amount amount text-green-600">
+                        <bdi><span class="woocommerce-Price-currencySymbol">₹</span><%= item.price %></bdi>
+                      </span>
                     </span>
                   </span>
-                </span>
-                <p class="inclusive-taxes text-xs text-gray-500">(Inclusive of All Taxes)</p>
+                  <p class="inclusive-taxes text-xs text-gray-500">(Inclusive of All Taxes)</p>
+                </div>
               </div>
             </div>
-          </div>
+          </a>
         </div>
       <% }); %>
     </div>
+    
 
     <div class="text-[#CA9650] swiper-button-next custom-swiper-button-next"></div>
     <div class="text-[#CA9650] swiper-button-prev custom-swiper-button-prev"></div>
