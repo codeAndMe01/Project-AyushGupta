@@ -117,6 +117,8 @@ app.get('/', async (req, res) => {
 app.get('/about-us', (req, res) => res.render('aboutUs', { title: 'About-Us' }));
 app.get('/contact-us', (req, res) => res.render('contactUs', { title: 'Contact-Us' }));
 
+app.get('/privacy-policy', (req, res) => res.render('privacyPolicy', { title: 'Privacy-Policy' }));
+
 app.get('/search-us', (req, res) => res.render('search/searchPage', { title: 'search' }));
 
 // Admin Routes

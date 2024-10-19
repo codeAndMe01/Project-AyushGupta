@@ -7,10 +7,10 @@
                 <div class="col">
                     <h2 class="text-lg font-bold mb-4">Quick Links</h2>
                     <ul class="space-y-2">
-                        <li><a href="https://Pradhannamkeen.com/" class="text-gray-300 hover:text-white">Home</a></li>
+                        <li><a href="/" class="text-gray-300 hover:text-white">Home</a></li>
                         <li><a href="/feedback-form" class="text-gray-300 hover:text-white">Feedback</a></li>
                         <li><a href="/inquiry-form" class="text-gray-300 hover:text-white">Query For Distributor / Super Stockist</a></li>
-                        <li><a href="https://Pradhannamkeen.com/privacy-policy-2/" class="text-gray-300 hover:text-white">Privacy Policy</a></li>
+                        <li><a href="/privacy-policy" class="text-gray-300 hover:text-white">Privacy Policy</a></li>
                         <li><a href="/contact-us" class="text-gray-300 hover:text-white">Contact Us</a></li>
                     </ul>
                 </div>
@@ -35,9 +35,8 @@
                 <div class="col">
                     <h3 class="text-lg font-bold mb-4">Visitors Count</h3>
                     <div>
-                        <a href="https://www.hitwebcounter.com" target="_blank">
-                            <img decoding="async" src="https://hitwebcounter.com/counter/counter.php?page=8006856&amp;style=0006&amp;nbdigits=7&amp;type=ip&amp;initCount=7586" title="Free Counter" alt="web counter" border="0">
-                        </a>
+                     
+                        <img src="https://hitwebcounter.com/counter/counter.php?page=16934873&style=0006&nbdigits=5&type=page&initCount=0" title="Counter Widget" Alt="Visit counter For Websites"   border="0" />     
                     </div>
                 </div>
     
@@ -54,10 +53,14 @@
             
             <!-- Footer Bottom -->
             <div class="mt-8 text-center">
-                <div class="site-info">
-                    <span class="copy-right"> <a href="#" class="text-gray-300 hover:text-white">Powered By BNCETian (IT Department)</a> </span>
-                </div>
-            </div>
+              <div class="site-info">
+                  <span class="copy-right"> 
+                      <a href="#" class="text-gray-300 hover:text-white">
+                          FABCON AGRO PVT. LTD © Copyright <span id="year"></span>. All Rights Reserved
+                      </a> 
+                  </span>
+              </div>
+          </div>
         </div>
     </div>
 </footer>
@@ -68,6 +71,11 @@
 
   <!-- Initialize Slider -->
   <script>
+
+    // Set the current year dynamically
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+
     var swiper = new Swiper(".mySwiper", {
       loop: true, // Enable looping
       navigation: {

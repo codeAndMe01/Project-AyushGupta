@@ -157,32 +157,34 @@
     </div>
   </div>
 
+
   <!-- Related Products -->
-  <div class="mt-12">
-    <h2 class="text-2xl font-bold">Related products</h2>
-    <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-6 mt-6">
-      <% relatedProducts.forEach(relatedProduct => { %>
-      <div
-        class="bg-white border rounded-lg p-4 text-center hover:shadow-lg transition-shadow border-2 border-[#CA9650]"
-      >
-        <img
-          src="/<%= relatedProduct.image %>"
-          alt="<%= relatedProduct.title %>"
-          class="mx-auto w-full transition-transform duration-300 hover:scale-105"
-        />
-        <div class="mt-4 font-semibold"><%= relatedProduct.title %></div>
-        <div class="text-gray-700 text-lg">
-          MRP: ₹<%= relatedProduct.price %>
-        </div>
-        <a
-          href="/product/<%= relatedProduct._id %>"
-          class="block mt-4 text-blue-500"
-          >Read more</a
-        >
+<div class="mt-12">
+  <h2 class="text-2xl font-bold">Related products</h2>
+  <div class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 mt-6">
+    <% relatedProducts.forEach(relatedProduct => { %>
+    <div
+      class="bg-white border rounded-lg p-4 text-center hover:shadow-lg transition-shadow border-2 border-[#CA9650]"
+    >
+      <img
+        src="/<%= relatedProduct.image %>"
+        alt="<%= relatedProduct.title %>"
+        class="mx-auto w-full transition-transform duration-300 hover:scale-105"
+      />
+      <div class="mt-4 font-semibold"><%= relatedProduct.title %></div>
+      <div class="text-gray-700 text-lg">
+        MRP: ₹<%= relatedProduct.price %>
       </div>
-      <% }) %>
+      <a
+        href="/product/<%= relatedProduct._id %>"
+        class="block mt-4 text-blue-500"
+        >Read more</a
+      >
     </div>
+    <% }) %>
   </div>
+</div>
+
 </div>
 
 <script>
